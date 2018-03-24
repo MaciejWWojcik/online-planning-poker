@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Online Planning Poker';
-  subtitle = 'TSD project 2018'
+  subtitle = 'TSD project 2018';
+  members: string[] = ["Mateusz Kiciński", "Piotr Mitkowski", "Maciej Wójcik"];
 }

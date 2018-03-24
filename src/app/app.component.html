@@ -1,6 +1,14 @@
-<div style="text-align:center">
-  <h1>Welcome to {{ title }}!</h1>
-  <h3>{{subtitle}}</h3>
+<div fxLayout="column" fxFill>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title><h1>Welcome to {{ title }}!</h1></mat-card-title>
+      <mat-card-subtitle>{{subtitle}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      Members:
+      <mat-list dense *ngFor="let member of members">
+        <mat-list-item>{{member}}</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
 </div>
-
-
