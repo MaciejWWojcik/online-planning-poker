@@ -11,7 +11,7 @@
 # Links
 
 * [Backend](https://github.com/PiotrMitkowski/se2018-poker-backend)
-* [App on heroku]()
+* [App on heroku](https://online-planning-poker.herokuapp.com/)
 * [AppVeyor for backend project]()
 * [CI for app]()
 
