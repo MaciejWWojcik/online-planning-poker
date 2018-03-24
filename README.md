@@ -3,12 +3,12 @@
 >TSD project 2018
 >Software Engineering
 
-# Team
+## Team
 * Piotr Mitkowski
 * Mateusz Kiciński
 * Maciej Wójcik
 
-# Links
+## Links
 
 * [Backend](https://github.com/PiotrMitkowski/se2018-poker-backend)
 * [App on heroku](https://online-planning-poker.herokuapp.com/)
