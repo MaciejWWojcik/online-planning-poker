@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">Create room</mat-toolbar>
+<mat-dialog-content fxLayout="column">
+
+  <mat-form-field fxFill>
+    <input matInput type="text" placeholder="Room name" [(ngModel)]="roomName" >
+  </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="createRoom()">Create</button>
+</mat-dialog-actions>
