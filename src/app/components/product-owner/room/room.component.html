@@ -1,0 +1,11 @@
+<mat-grid-list cols="16" rowHeight="fit" gutterSize="5">
+  <mat-grid-tile [colspan]="1" [rowspan]="9">
+    menu
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="15" [rowspan]="1">
+    <mat-toolbar color="accent">Room: {{roomId}}</mat-toolbar>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="15" [rowspan]="8">
+    content
+  </mat-grid-tile>
+</mat-grid-list>

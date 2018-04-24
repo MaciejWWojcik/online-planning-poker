@@ -11,13 +11,18 @@ import {HomeComponent} from "./components/home/home.component";
 import {CreateRoomComponent} from "./components/create-room/create-room.component";
 import {RoomService} from "./services/room.service";
 import {AppRoutingModule} from "./app-routing.module";
+import {RoomComponent} from "./components/room/room.component";
+import {RoomComponent as HostRoom} from "./components/product-owner/room/room.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CreateRoomComponent
+    CreateRoomComponent,
+    RoomComponent,
+    RoomComponent,
+    HostRoom
   ],
   imports: [
     BrowserModule,
