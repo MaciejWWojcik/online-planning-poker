@@ -21,7 +21,6 @@ import {RoomComponent as HostRoom} from "./components/product-owner/room/room.co
     HomeComponent,
     CreateRoomComponent,
     RoomComponent,
-    RoomComponent,
     HostRoom
   ],
   imports: [
