@@ -13,6 +13,11 @@ import {RoomService} from "./services/room.service";
 import {AppRoutingModule} from "./app-routing.module";
 import {RoomComponent} from "./components/room/room.component";
 import {RoomComponent as HostRoom} from "./components/product-owner/room/room.component";
+import {TaskItemComponent} from "./components/tasks/task-item/task-item.component";
+import {TaskListComponent} from "./components/tasks/task-list/task-list.component";
+import {ParticipantRoomComponent} from "./components/participant/participant-room/participant-room.component";
+import {EstimationComponent} from "./components/estimation/estimation.component";
+import {EstimationResultComponent} from "./components/estimation-result/estimation-result.component";
 
 
 @NgModule({
@@ -21,7 +26,12 @@ import {RoomComponent as HostRoom} from "./components/product-owner/room/room.co
     HomeComponent,
     CreateRoomComponent,
     RoomComponent,
-    HostRoom
+    HostRoom,
+    TaskItemComponent,
+    TaskListComponent,
+    ParticipantRoomComponent,
+    EstimationComponent,
+    EstimationResultComponent
   ],
   imports: [
     BrowserModule,

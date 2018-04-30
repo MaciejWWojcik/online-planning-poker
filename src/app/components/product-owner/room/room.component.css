@@ -1,8 +1,17 @@
 mat-grid-tile{
-  border: 1px dashed purple;
   box-sizing: border-box;
 }
 mat-grid-list{
   width: 100vw;
   height: calc(100vh - 64px - 32px);
+}
+
+mat-card{
+  margin: 10px;
+}
+.estimation{
+  display: flex;
+}
+app-estimation-result{
+  margin-left: 50px;
 }

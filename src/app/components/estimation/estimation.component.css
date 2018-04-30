@@ -1,0 +1,10 @@
+button{
+  margin: 5px;
+}
+
+.container{
+  max-width: 50%;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+}

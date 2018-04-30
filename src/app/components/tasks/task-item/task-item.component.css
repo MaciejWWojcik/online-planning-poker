@@ -1,0 +1,14 @@
+p{
+  font-size: .8em;
+  color:dimgrey;
+}
+mat-card-title{
+  font-weight: bold;
+}
+mat-card-subtitle > mat-icon{
+  font-size: 1.5em !important;
+  width: 10px;
+}
+mat-card{
+  background-color: #ffd740;
+}
