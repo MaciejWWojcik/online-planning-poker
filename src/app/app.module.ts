@@ -13,6 +13,7 @@ import {RoomService} from "./services/room.service";
 import {AppRoutingModule} from "./app-routing.module";
 import {RoomComponent} from "./components/room/room.component";
 import {RoomComponent as HostRoom} from "./components/product-owner/room/room.component";
+import {CreateTaskComponent} from './components/create-task/create-task.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {RoomComponent as HostRoom} from "./components/product-owner/room/room.co
     HomeComponent,
     CreateRoomComponent,
     RoomComponent,
-    HostRoom
+    HostRoom,
+    CreateTaskComponent
   ],
   imports: [
     BrowserModule,
