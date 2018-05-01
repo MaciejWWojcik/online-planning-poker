@@ -1,25 +1,23 @@
-<mat-card>
-  <mat-toolbar color="primary">Create task</mat-toolbar>
-  <mat-card-content>
-    <form class="column-container" #taskForm="ngForm" (ngSubmit)="onCreateTask(taskForm)">
-      <mat-form-field class="first-form-field">
-        <input matInput placeholder="Enter task name" required name="name" #name="ngModel" [ngModel]="model.name">
-      </mat-form-field>
-      <mat-form-field><textarea matInput placeholder="Enter task description" name="description" #description="ngModel"
-                                [ngModel]="model.description"></textarea></mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="Choose priority" required name="priority" #priority="ngModel"
-                    [ngModel]="model.priority">
-          <mat-option *ngFor="let priority of priorities" [value]="priority">
-            {{priority}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button mat-raised-button color="primary" fxFlex="100" [disabled]="!taskForm.form.valid"
-              type="submit">Create
-      </button>
-    </form>
-  </mat-card-content>
-</mat-card>
-
+<mat-toolbar color="primary">Create task</mat-toolbar>
+<mat-card-content>
+  <form class="column-container" #taskForm="ngForm" (ngSubmit)="onCreateTask(taskForm)">
+    <mat-form-field class="first-form-field">
+      <input matInput placeholder="Enter task name" required name="name" #name="ngModel" [ngModel]="model.name">
+    </mat-form-field>
+    <mat-form-field><textarea matInput placeholder="Enter task description" name="description" #description="ngModel"
+                              [ngModel]="model.description"></textarea></mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Choose priority" required name="priority" #priority="ngModel"
+                  [ngModel]="model.priority">
+        <mat-option *ngFor="let priority of priorities" [value]="priority">
+          {{priority}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" fxFlex="100" [disabled]="!taskForm.form.valid"
+            type="submit">Create
+    </button>
+  </form>
+</mat-card-content>
+s
 

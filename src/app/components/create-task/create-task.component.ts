@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {EstimationTask} from '../../estimation-task';
+import {RoomService} from '../../services/room.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-create-task',
@@ -9,17 +10,13 @@ import {EstimationTask} from '../../estimation-task';
 export class CreateTaskComponent implements OnInit {
 
   model: any = {};
-  priorities: number[];
+  priorities: Observable<number[]>;
 
-  constructor() {
+  constructor(private service: RoomService) {
   }
 
   ngOnInit() {
-    this.priorities = this.mockPriorities();
-  }
-
-  mockPriorities() {
-    return [1, 2, 3, 4];
+    this.priorities = this.service.getPriorities();
   }
 
   onCreateTask(taskForm: any) {
