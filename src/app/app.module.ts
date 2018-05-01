@@ -19,6 +19,7 @@ import {ParticipantRoomComponent} from './components/participant/participant-roo
 import {EstimationComponent} from './components/estimation/estimation.component';
 import {EstimationResultComponent} from './components/estimation-result/estimation-result.component';
 import {CreateTaskComponent} from './components/create-task/create-task.component';
+import {MenuComponent} from './components/product-owner/menu/menu.component';
 
 
 @NgModule({
@@ -28,13 +29,14 @@ import {CreateTaskComponent} from './components/create-task/create-task.componen
     CreateRoomComponent,
     RoomComponent,
     HostRoom,
-    CreateTaskComponent
+    CreateTaskComponent,
     HostRoom,
     TaskItemComponent,
     TaskListComponent,
     ParticipantRoomComponent,
     EstimationComponent,
-    EstimationResultComponent
+    EstimationResultComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

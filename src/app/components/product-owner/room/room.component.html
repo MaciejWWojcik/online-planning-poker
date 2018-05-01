@@ -1,6 +1,6 @@
 <mat-grid-list cols="16" rowHeight="fit" gutterSize="5">
   <mat-grid-tile [colspan]="1" [rowspan]="9">
-    menu
+    <app-menu></app-menu>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="15" [rowspan]="1">
     <mat-toolbar color="accent">Room: {{roomId}}</mat-toolbar>
@@ -8,11 +8,10 @@
   <mat-grid-tile [colspan]="15" [rowspan]="8">
 
     <div fxLayout="column">
-
       <mat-card *ngIf="taskToEstimate" fxFill>
         <h2>Estimation</h2>
-        <div  fxLayout="row" fxLayoutAlign="space-around center"  class="estimation">
-          <app-task-item [task]="taskToEstimate" ></app-task-item>
+        <div fxLayout="row" fxLayoutAlign="space-around center" class="estimation">
+          <app-task-item [task]="taskToEstimate"></app-task-item>
           <app-estimation-result [values]="estimation"></app-estimation-result>
         </div>
       </mat-card>
