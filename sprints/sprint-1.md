@@ -1,2 +1,2 @@
 ## Implemented features
-#16
+- issue #16: [Creating a room](https://github.com/MaciejWWojcik/online-planning-poker/issues/16)
