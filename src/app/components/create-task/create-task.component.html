@@ -9,7 +9,7 @@
     <mat-form-field>
       <mat-select placeholder="Choose priority" required name="priority" #priority="ngModel"
                   [ngModel]="model.priority">
-        <mat-option *ngFor="let priority of priorities" [value]="priority">
+        <mat-option *ngFor="let priority of priorities | async" [value]="priority">
           {{priority}}
         </mat-option>
       </mat-select>

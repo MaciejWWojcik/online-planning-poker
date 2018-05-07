@@ -5,6 +5,9 @@ import {MaterialModule} from '../../material.module';
 import {FormsModule} from '@angular/forms';
 import {RoomService} from '../../services/room.service';
 import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {RouterModule} from "@angular/router";
+import {BrowserModule} from "@angular/platform-browser";
 
 describe('CreateTaskComponent', () => {
   let component: CreateTaskComponent;
@@ -14,8 +17,8 @@ describe('CreateTaskComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CreateTaskComponent],
-      imports: [MaterialModule, FormsModule, HttpClientModule],
-      providers: [RoomService]
+      imports: [MaterialModule, FormsModule, HttpClientModule, RouterModule, BrowserModule,BrowserAnimationsModule],
+      providers: [RoomService,HttpClientModule]
     })
       .compileComponents();
   }));

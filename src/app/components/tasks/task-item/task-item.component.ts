@@ -14,6 +14,6 @@ export class TaskItemComponent implements OnInit {
   }
 
   getPriority() {
-    return new Array(this.task.priority)
+    return new Array( this.task ? this.task.priority : 0);
   }
 }

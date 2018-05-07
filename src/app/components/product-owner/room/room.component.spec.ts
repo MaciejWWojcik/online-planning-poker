@@ -15,6 +15,7 @@ import {FormsModule} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClientModule} from "@angular/common/http";
 
 export class ActivatedRouteStub {
   // Use a ReplaySubject to share previous values with subscribers
@@ -45,11 +46,11 @@ describe('RoomComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [ RoomComponent ],
-      imports: [MaterialModule, FormsModule, RouterTestingModule, BrowserModule,BrowserAnimationsModule],
+      imports: [MaterialModule, FormsModule, RouterTestingModule, BrowserModule,BrowserAnimationsModule, HttpClientModule],
       providers: [MatDialog, MatToolbar, RoomService,
         {
           provide: ActivatedRoute, useValue: {snapshot:{params:{id:'test'}}}
-        }
+        }, HttpClientModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
     })
