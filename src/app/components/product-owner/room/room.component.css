@@ -15,3 +15,8 @@ mat-card{
 app-estimation-result{
   margin-left: 50px;
 }
+span{
+  margin-left: 100px;
+  float: right;
+  font-size: .8em;
+}

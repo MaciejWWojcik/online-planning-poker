@@ -45,11 +45,12 @@ export class RoomService {
   }, {name: 'very important task', description: 'lorem lorem lorem loremlorem lorem lorem lorem ', priority: 3}];
   mockPriorities: number[] = [1, 2, 3, 4];
 
+  base = 'http://plpoker-api.azurewebsites.net';
   constructor(private http: HttpClient) {
   }
 
   createRoom(roomName: string) {
-    return Observable.of(true);
+    return this.http.put(this.base+'/api/Rooms',{name:roomName});
   }
 
   getTasks(roomName: string) {

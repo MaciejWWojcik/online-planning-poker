@@ -19,9 +19,8 @@ export class CreateRoomComponent implements OnInit {
 
   createRoom(){
     this.roomService.createRoom(this.roomName).subscribe(
-      (data)=> {
-        console.log("Create room response", data);
-        //TODO this.router.navigate() to route from response
+      (data:{id:number, name:string, link: string})=> {
+        this.router.navigate(['/room/host',data.id]);
         this.dialogRef.close("Room created");
       }, (error) => {
         console.error("Create room error", error);

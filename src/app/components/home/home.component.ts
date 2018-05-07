@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
     let dialogRef = this.dialog.open(CreateRoomComponent);
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log("RESULT", result)
       this.infoBar.open(result,'',{duration:4000})
     });
   }

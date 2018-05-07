@@ -7,7 +7,7 @@ import {RoomComponent as Host} from './components/product-owner/room/room.compon
 import {ParticipantRoomComponent} from './components/participant/participant-room/participant-room.component';
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: HomeComponent,pathMatch: 'full'},
   {
     path: 'room', component: RoomComponent,
     children: [
