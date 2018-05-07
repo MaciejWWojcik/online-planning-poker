@@ -19,10 +19,10 @@
 ## Tools
 
 To develop the app you will need:
-  * git
-  * npm
-  * node
-  * angular-cli
+  * git - https://git-scm.com/downloads
+  * npm - installs together with node
+  * node - https://nodejs.org/en/download/
+  * angular-cli - once npm is installed run 'npm install -g @angular/cli'
 
 ## Developing
 
