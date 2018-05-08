@@ -34,10 +34,11 @@ module.exports = function (config) {
         flags: ['--no-sandbox']
       }
     },
-    captureTimeout: 210000,
+    captureTimeout: 510000,
     browserDisconnectTolerance: 3,
-    browserDisconnectTimeout : 210000,
-    browserNoActivityTimeout : 210000,
+    browserDisconnectTimeout : 510000,
+    browserNoActivityTimeout : 510000,
+    mime: { 'text/x-typescript': ['ts','tsx'] },
     singleRun: false
   });
 };

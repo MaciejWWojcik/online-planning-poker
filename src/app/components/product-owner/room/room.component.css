@@ -1,0 +1,22 @@
+mat-grid-tile{
+  box-sizing: border-box;
+}
+mat-grid-list{
+  width: 100vw;
+  height: calc(100vh - 64px - 32px);
+}
+
+mat-card{
+  margin: 10px;
+}
+.estimation{
+  display: flex;
+}
+app-estimation-result{
+  margin-left: 50px;
+}
+span{
+  margin-left: 100px;
+  float: right;
+  font-size: .8em;
+}
