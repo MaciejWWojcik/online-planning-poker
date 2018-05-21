@@ -20,6 +20,7 @@ import {EstimationComponent} from './components/estimation/estimation.component'
 import {EstimationResultComponent} from './components/estimation-result/estimation-result.component';
 import {CreateTaskComponent} from './components/create-task/create-task.component';
 import {MenuComponent} from './components/product-owner/menu/menu.component';
+import {EstimateSubmitComponent} from "./components/estimate-submit/estimate-submit.component";
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {MenuComponent} from './components/product-owner/menu/menu.component';
     ParticipantRoomComponent,
     EstimationComponent,
     EstimationResultComponent,
-    MenuComponent
+    MenuComponent,
+    EstimateSubmitComponent
   ],
   imports: [
     BrowserModule,
