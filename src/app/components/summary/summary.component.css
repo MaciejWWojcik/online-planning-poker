@@ -1,0 +1,12 @@
+.right{
+  margin-left: 20px;
+}
+.left{
+  max-width: 20px;
+  min-width: 20px;
+  float: left;
+}
+.container{
+  max-width: 30%;
+  margin: 5% auto;
+}
