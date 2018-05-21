@@ -13,6 +13,7 @@ export class ParticipantRoomComponent implements OnInit {
   roomId:string;
   tasks:any[];
   taskToEstimate: any;
+  estimationResult:any[];
 
   constructor(private route: ActivatedRoute, private service:RoomService, public info: MatSnackBar) { }
 
@@ -23,6 +24,8 @@ export class ParticipantRoomComponent implements OnInit {
       error => console.error(error)
     )
     setTimeout(() => this.taskToEstimate = this.tasks[0], 4000);
+
+    //TODO listen on WS to set estimationResult when received
   }
 
   estimateTask(value){
