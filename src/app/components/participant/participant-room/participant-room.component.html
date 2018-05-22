@@ -13,7 +13,8 @@
         <h2>Estimation</h2>
         <div  fxLayout="row" fxLayoutAlign="space-around center"  class="estimation">
           <app-task-item [task]="taskToEstimate" ></app-task-item>
-          <app-estimation (estimated)="estimateTask($event)"></app-estimation>
+          <app-estimation *ngIf="!estimationResult" (estimated)="estimateTask($event)"></app-estimation>
+          <app-estimation-result *ngIf="estimationResult" [values]="estimationResult"></app-estimation-result>
         </div>
       </mat-card>
 
