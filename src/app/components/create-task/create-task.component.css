@@ -3,6 +3,10 @@
   flex-direction: column;
 }
 
+mat-card-content{
+  min-width: 300px;
+}
+
 .first-form-field {
   margin-top: 1em;
 }
