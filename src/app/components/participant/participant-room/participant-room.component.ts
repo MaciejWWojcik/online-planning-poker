@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {RoomService} from "../../../services/room.service";
-import {MatSnackBar} from "@angular/material";
+import {MatDialog, MatSnackBar} from "@angular/material";
 import {$WebSocket} from "angular2-websocket/angular2-websocket";
+import {CreateUserComponent} from "../../create-user/create-user.component";
 
 @Component({
   selector: 'app-participant-room',
@@ -19,7 +20,7 @@ export class ParticipantRoomComponent implements OnInit {
 
   websocket = new $WebSocket("ws://plpoker-api.azurewebsites.net:3002");
 
-  constructor(private route: ActivatedRoute, private service:RoomService, public info: MatSnackBar) { }
+  constructor(private route: ActivatedRoute, private service:RoomService, public info: MatSnackBar, public  dialog: MatDialog) { }
 
   ngOnInit() {
     this.roomId = this.route.snapshot.params.id;
@@ -27,6 +28,20 @@ export class ParticipantRoomComponent implements OnInit {
     this.sendToWebSocket({roomId: this.roomId, type: 'init-ws'});
     this.fetchTasks();
     this.listenOnWebSockets();
+    this.signUp();
+  }
+
+  private signUp() {
+    setTimeout(() => {
+      let ref = this.dialog.open(CreateUserComponent);
+      ref.afterClosed().subscribe(
+        data => {
+          if (data) {
+            this.service.setUser(data);
+          }
+        }
+      )
+    }, 10);
   }
 
   private listenOnWebSockets() {

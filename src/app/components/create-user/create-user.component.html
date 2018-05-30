@@ -1,0 +1,10 @@
+<mat-dialog-content>
+  <h2>What's your name?</h2>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Name" [(ngModel)]="name">
+  </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="save()">save</button>
+</mat-dialog-actions>

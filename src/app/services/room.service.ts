@@ -37,6 +37,14 @@ export class RoomService {
     return this.http.get(this.base+'/api/rooms/'+this.roomId+'/summary');
   }
 
+  setUser(name: string){
+    return this.http.post(this.base+'/api/Users/join', {name: name, roomId: this.roomId});
+  }
+
+  setHostUser(name: string){
+    return this.http.post(this.base+'/api/Users/po/join', {name: name, roomId: this.roomId});
+  }
+
   sendToWebSocket(message){
     this.websocket.send(JSON.stringify(message)).subscribe(
       (msg)=> {
