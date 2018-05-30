@@ -38,7 +38,7 @@ import {EstimateSubmitComponent} from "./components/estimate-submit/estimate-sub
     EstimationComponent,
     EstimationResultComponent,
     MenuComponent,
-    SummaryComponent
+    SummaryComponent,
     EstimateSubmitComponent
   ],
   imports: [
