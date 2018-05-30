@@ -21,7 +21,7 @@ import {EstimationResultComponent} from './components/estimation-result/estimati
 import {CreateTaskComponent} from './components/create-task/create-task.component';
 import {MenuComponent} from './components/product-owner/menu/menu.component';
 import {SummaryComponent} from "./components/summary/summary.component";
-
+import {EstimateSubmitComponent} from "./components/estimate-submit/estimate-submit.component";
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import {SummaryComponent} from "./components/summary/summary.component";
     EstimationResultComponent,
     MenuComponent,
     SummaryComponent
+    EstimateSubmitComponent
   ],
   imports: [
     BrowserModule,

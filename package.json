@@ -24,7 +24,7 @@
     "@angular/compiler": "^5.2.0",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/core": "^5.2.0",
-    "@angular/flex-layout": "^5.0.0-beta.13",
+    "@angular/flex-layout": "^5.0.0-beta.14",
     "@angular/forms": "^5.2.0",
     "@angular/http": "^5.2.0",
     "@angular/material": "github:angular/material2-builds#8873f67f2988f214d09b55b15f2e10a5d9b5bb0d",

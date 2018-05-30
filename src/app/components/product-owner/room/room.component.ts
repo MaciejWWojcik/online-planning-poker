@@ -12,7 +12,8 @@ export class RoomComponent implements OnInit {
   roomId:string;
   tasks:any[];
   taskToEstimate:any;
-  estimation: string[];
+  estimation: number[];
+  estimationMedian: number;
 
   constructor(private route: ActivatedRoute, private service:RoomService) { }
 
@@ -32,7 +33,31 @@ export class RoomComponent implements OnInit {
       error => console.error(error)
     )
 
-    setTimeout(() => this.estimation = ['1','2','1','10'], 1000);
+    //TODO connect with backend and fetch estimations viw WS
+    setTimeout(() => this.estimation = [1,2,4,10,8], 1000);
+    this.estimationMedian = this.median([1,2,4,10,8])
   }
 
+  estimate(estimationResult){
+    if(estimationResult === 'restart'){
+      //TODO connect with backend and restart estimation process
+    }else{
+      //TODO connect with backend and send estimation result and close estimation process
+    }
+  }
+
+  private median(values){
+    values.sort(function(a,b){
+      return a-b;
+    });
+
+    if(values.length ===0) return 0
+
+    let half = Math.floor(values.length / 2);
+
+    if (values.length % 2)
+      return values[half];
+    else
+      return (values[half - 1] + values[half]) / 2.0;
+  }
 }
