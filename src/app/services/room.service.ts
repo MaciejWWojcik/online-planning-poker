@@ -2,48 +2,15 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/observable/of';
+import {Task} from "../classes/task";
+import {$WebSocket} from "angular2-websocket/angular2-websocket";
 
 @Injectable()
 export class RoomService {
 
-  mockTasks: any[] = [{
-    name: 'very important task',
-    description: 'lorem lorem lorem loremlorem lorem lorem lorem ',
-    priority: 3
-  }, {
-    name: 'very important task',
-    description: 'lorem lorem lorem loremlorem lorem lorem lorem ',
-    priority: 3
-  }, {
-    name: 'very important task',
-    description: 'lorem lorem lorem loremlorem lorem lorem lorem ',
-    priority: 3
-  }, {
-    name: 'very important task',
-    description: 'lorem lorem lorem loremlorem lorem lorem lorem ',
-    priority: 3
-  }, {
-    name: 'very important task',
-    description: 'lorem lorem lorem loremlorem lorem lorem lorem ',
-    priority: 3
-  }, {
-    name: 'very important task',
-    description: 'lorem lorem lorem loremlorem lorem lorem lorem ',
-    priority: 3
-  }, {
-    name: 'very important task',
-    description: 'lorem lorem lorem loremlorem lorem lorem lorem ',
-    priority: 3
-  }, {
-    name: 'very important task',
-    description: 'lorem lorem lorem loremlorem lorem lorem lorem ',
-    priority: 3
-  }, {
-    name: 'very important task',
-    description: 'lorem lorem lorem loremlorem lorem lorem lorem ',
-    priority: 3
-  }, {name: 'very important task', description: 'lorem lorem lorem loremlorem lorem lorem lorem ', priority: 3}];
-  mockPriorities: number[] = [1, 2, 3, 4];
+  public roomId; string;
+  public tasks: Task[] = [];
+  websocket = new $WebSocket("ws://plpoker-api.azurewebsites.net:3001");
 
   base = 'http://plpoker-api.azurewebsites.net';
   constructor(private http: HttpClient) {
@@ -53,19 +20,34 @@ export class RoomService {
     return this.http.put(this.base+'/api/Rooms',{name:roomName});
   }
 
-  getTasks(roomName: string) {
-    return Observable.of(this.mockTasks);
+  getTasks() {
+    return this.http.get(this.base+'/api/Rooms/'+this.roomId+'/tasks');
   }
 
   estimateTask(task: any, value: string) {
-    return Observable.of(true);
+    return this.http.patch(this.base+'/api/tasks'+task.id+'?estimate'+value,{});
   }
 
-  selectTaskToEstimate(task: any) {
-    return Observable.of(true);
+  createTask(title: string) {
+    this.sendToWebSocket({roomId: this.roomId, type: 'new-task'});
+    return this.http.put(this.base+'/api/tasks',{title: title, RoomId: this.roomId});
   }
 
-  getPriorities() {
-    return Observable.of(this.mockPriorities);
+  getSummary(){
+    return this.http.get(this.base+'/api/rooms/'+this.roomId+'/summary');
+  }
+
+  sendToWebSocket(message){
+    this.websocket.send(JSON.stringify(message)).subscribe(
+      (msg)=> {
+        console.log("next", msg.data);
+      },
+      (msg)=> {
+        console.log("error", msg);
+      },
+      ()=> {
+        console.log("complete");
+      }
+    );
   }
 }

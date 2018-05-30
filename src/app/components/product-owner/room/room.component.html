@@ -1,6 +1,6 @@
 <mat-grid-list cols="16" rowHeight="fit" gutterSize="5">
   <mat-grid-tile [colspan]="1" [rowspan]="9">
-    <app-menu></app-menu>
+    <app-menu (emitter)="onMenuChange($event)"></app-menu>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="15" [rowspan]="1">
     <mat-toolbar color="accent">Room: {{roomId}}   <span>link to invite: https://online-planning-poker.herokuapp.com/room/participant/{{roomId}} </span> </mat-toolbar>

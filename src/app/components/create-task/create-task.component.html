@@ -2,21 +2,12 @@
 <mat-card-content>
   <form class="column-container" #taskForm="ngForm" (ngSubmit)="onCreateTask(taskForm)">
     <mat-form-field class="first-form-field">
-      <input matInput placeholder="Enter task name" required name="name" #name="ngModel" [ngModel]="model.name">
+      <input matInput placeholder="Enter task name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
-    <mat-form-field><textarea matInput placeholder="Enter task description" name="description" #description="ngModel"
-                              [ngModel]="model.description"></textarea></mat-form-field>
     <mat-form-field>
-      <mat-select placeholder="Choose priority" required name="priority" #priority="ngModel"
-                  [ngModel]="model.priority">
-        <mat-option *ngFor="let priority of priorities | async" [value]="priority">
-          {{priority}}
-        </mat-option>
-      </mat-select>
+      <textarea matInput placeholder="Enter task description" [(ngModel)]="description" [ngModelOptions]="{standalone: true}"></textarea>
     </mat-form-field>
-    <button mat-raised-button color="primary" fxFlex="100" [disabled]="!taskForm.form.valid"
-            type="submit">Create
-    </button>
+    <button mat-raised-button color="primary" fxFlex="100" [disabled]="!taskForm.form.valid" type="submit">Create</button>
   </form>
 </mat-card-content>
 
