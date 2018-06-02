@@ -17,9 +17,7 @@ export class ParticipantRoomComponent implements OnInit {
   taskToEstimate: any;
   estimationResult:any[];
   canEstimate= false;
-
-  // websocket = new $WebSocket("ws://plpoker-api.azurewebsites.net/websocket");
-
+  
   constructor(private route: ActivatedRoute, private service:RoomService, public info: MatSnackBar, public  dialog: MatDialog) { }
 
   ngOnInit() {
@@ -76,7 +74,6 @@ export class ParticipantRoomComponent implements OnInit {
   private fetchTasks() {
     this.service.getTasks().subscribe(
       (data: any) => {
-        console.log(data);
         this.tasks = data;
       }, error => console.error(error)
     )

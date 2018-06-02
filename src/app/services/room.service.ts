@@ -10,7 +10,7 @@ export class RoomService {
 
   public roomId; string;
   public tasks: Task[] = [];
-  websocket = new $WebSocket("ws://plpoker-api.azurewebsites.net/websocket");
+  public websocket = new $WebSocket("ws://plpoker-api.azurewebsites.net/websocket");
 
   base = 'http://plpoker-api.azurewebsites.net';
   constructor(private http: HttpClient) {
