@@ -17,7 +17,7 @@ export class ParticipantRoomComponent implements OnInit {
   taskToEstimate: any;
   estimationResult:any[];
   canEstimate= false;
-  
+
   constructor(private route: ActivatedRoute, private service:RoomService, public info: MatSnackBar, public  dialog: MatDialog) { }
 
   ngOnInit() {
@@ -58,6 +58,7 @@ export class ParticipantRoomComponent implements OnInit {
           this.canEstimate = true;
         } else if (type == 'esimation-finish') {
           this.canEstimate = true;
+          this.fetchTasks();
         } else if (type == 'new-task') {
           this.fetchTasks();
         } else if (type == 'show') {
