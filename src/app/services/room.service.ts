@@ -10,7 +10,7 @@ export class RoomService {
 
   public roomId; string;
   public tasks: Task[] = [];
-  websocket = new $WebSocket("ws://plpoker-api.azurewebsites.net:3001");
+  websocket = new $WebSocket("ws://plpoker-api.azurewebsites.net/websocket");
 
   base = 'http://plpoker-api.azurewebsites.net';
   constructor(private http: HttpClient) {
@@ -25,11 +25,10 @@ export class RoomService {
   }
 
   estimateTask(task: any, value: string) {
-    return this.http.patch(this.base+'/api/tasks'+task.id+'?estimate'+value,{});
+    return this.http.patch(this.base+'/api/tasks/'+task.id+'?estimate'+value,{});
   }
 
   createTask(title: string) {
-    this.sendToWebSocket({roomId: this.roomId, type: 'new-task'});
     return this.http.put(this.base+'/api/tasks',{title: title, RoomId: this.roomId});
   }
 
@@ -46,6 +45,7 @@ export class RoomService {
   }
 
   sendToWebSocket(message){
+    console.log('sendToWS', JSON.stringify(message))
     this.websocket.send(JSON.stringify(message)).subscribe(
       (msg)=> {
         console.log("next", msg.data);

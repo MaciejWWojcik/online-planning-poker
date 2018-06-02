@@ -18,14 +18,14 @@ export class ParticipantRoomComponent implements OnInit {
   estimationResult:any[];
   canEstimate= false;
 
-  websocket = new $WebSocket("ws://plpoker-api.azurewebsites.net:3002");
+  // websocket = new $WebSocket("ws://plpoker-api.azurewebsites.net/websocket");
 
   constructor(private route: ActivatedRoute, private service:RoomService, public info: MatSnackBar, public  dialog: MatDialog) { }
 
   ngOnInit() {
     this.roomId = this.route.snapshot.params.id;
     this.service.roomId = this.roomId;
-    this.sendToWebSocket({roomId: this.roomId, type: 'init-ws'});
+    this.sendToWebSocket({roomId: this.roomId, type: 'init-client'});
     this.fetchTasks();
     this.listenOnWebSockets();
     this.signUp();
@@ -45,13 +45,14 @@ export class ParticipantRoomComponent implements OnInit {
   }
 
   private listenOnWebSockets() {
-    this.websocket.onMessage(
+    this.service.websocket.onMessage(
       (msg: MessageEvent) => {
         console.log("onMessage ", msg.data);
-        const type = msg.data.type;
-
+        const message = JSON.parse(msg.data);
+        const type = message.type;
+        console.log(type);
         if (type == 'task-selected') {
-          this.taskToEstimate = msg.data.content;
+          this.taskToEstimate =message.content;
           this.estimationResult = null;
           this.canEstimate = true;
         } else if (type == 'restart') {
@@ -62,7 +63,7 @@ export class ParticipantRoomComponent implements OnInit {
         } else if (type == 'new-task') {
           this.fetchTasks();
         } else if (type == 'show') {
-          this.estimationResult = msg.data.content;
+          this.estimationResult = message.content.estimate;
         }else if (type == 'end') {
           //TODO end
         }
@@ -83,24 +84,14 @@ export class ParticipantRoomComponent implements OnInit {
 
   estimateTask(value){
     if(this.canEstimate){
-      const initMessage = {roomId: this.roomId, type: 'estimation', content: value};
+      const initMessage = {roomId: this.roomId, type: 'estimation', content: {estimate: value}};
       this.sendToWebSocket(initMessage);
       this.canEstimate = false;
     }
   }
 
   sendToWebSocket(message){
-    this.websocket.send(JSON.stringify(message)).subscribe(
-      (msg)=> {
-        console.log("next", msg.data);
-      },
-      (msg)=> {
-        console.log("error", msg);
-      },
-      ()=> {
-        console.log("complete");
-      }
-    );
+    this.service.sendToWebSocket(message);
   }
 
 }

@@ -18,7 +18,7 @@ export class RoomComponent implements OnInit {
   estimation: number[] = [];
   estimationMedian: number;
 
-  websocket = new $WebSocket("ws://plpoker-api.azurewebsites.net:3001");
+  // websocket = new $WebSocket("ws://plpoker-api.azurewebsites.net/websocket");
 
   constructor(private route: ActivatedRoute, private service: RoomService, public dialog: MatDialog) {
   }
@@ -27,7 +27,7 @@ export class RoomComponent implements OnInit {
     this.roomId = this.route.snapshot.params.id;
     this.service.roomId = this.roomId;
     this.tasks = this.service.tasks;
-    this.sendToWebSocket({roomId: this.roomId, type: 'init-ws'});
+    this.sendToWebSocket({roomId: this.roomId, type: 'init-host'});
     this.listenOnWebSockets();
     this.signUp()
   }
@@ -46,13 +46,14 @@ export class RoomComponent implements OnInit {
   }
 
   private listenOnWebSockets() {
-    this.websocket.onMessage(
+    this.service.websocket.onMessage(
       (msg: MessageEvent) => {
         console.log("onMessage ", msg.data);
-        const type = msg.data.type;
+        const message = JSON.parse(msg.data);
+        const type = message.type;
 
         if (type == 'estimation') {
-          this.estimation.push(msg.data.content);
+          this.estimation.push(message.content.estimate);
           this.estimationMedian = this.median(this.estimation);
         }
 
@@ -62,17 +63,7 @@ export class RoomComponent implements OnInit {
   }
 
   sendToWebSocket(message) {
-    this.websocket.send(JSON.stringify(message)).subscribe(
-      (msg) => {
-        console.log("next", msg.data);
-      },
-      (msg) => {
-        console.log("error", msg);
-      },
-      () => {
-        console.log("complete");
-      }
-    );
+    this.service.sendToWebSocket(message);
   }
 
   selectedToEstimate(task) {
@@ -89,14 +80,19 @@ export class RoomComponent implements OnInit {
   estimate(estimationResult) {
     if (estimationResult === 'restart') {
       const taskMessage = {roomId: this.roomId, type: 'restart'};
+      this.estimation = [];
+      this.estimationMedian = 0;
       this.sendToWebSocket(taskMessage);
     } else if (estimationResult === 'show') {
-      const taskMessage = {roomId: this.roomId, type: 'show', content: this.estimation};
+      const taskMessage = {roomId: this.roomId, type: 'show', content: {estimate: this.estimation}};
       this.sendToWebSocket(taskMessage);
     } else {
       const taskMessage = {roomId: this.roomId, type: 'esimation-finish'};
+      this.estimation = [];
+      this.estimationMedian = 0;
       this.sendToWebSocket(taskMessage);
       this.service.estimateTask(this.taskToEstimate, estimationResult);
+      this.taskToEstimate = null;
     }
   }
 
