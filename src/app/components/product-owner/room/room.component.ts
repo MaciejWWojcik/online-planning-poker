@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {RoomService} from "../../../services/room.service";
+import {$WebSocket} from "angular2-websocket/angular2-websocket";
+import {MatDialog} from "@angular/material";
+import {CreateUserComponent} from "../../create-user/create-user.component";
 
 @Component({
   selector: 'app-room',
@@ -9,49 +12,119 @@ import {RoomService} from "../../../services/room.service";
 })
 export class RoomComponent implements OnInit {
 
-  roomId:string;
-  tasks:any[];
-  taskToEstimate:any;
-  estimation: number[];
+  roomId: string;
+  tasks: any[] = [];
+  taskToEstimate: any;
+  estimation: number[] = [];
   estimationMedian: number;
 
-  constructor(private route: ActivatedRoute, private service:RoomService) { }
+  constructor(private route: ActivatedRoute, private service: RoomService, public dialog: MatDialog, private router: Router) {
+  }
 
   ngOnInit() {
     this.roomId = this.route.snapshot.params.id;
-    this.service.getTasks(this.roomId).subscribe(
-      data => this.tasks = data,
-      error => console.error(error)
-    )
-
+    this.service.roomId = this.roomId;
+    this.fetchTasks();
+    this.sendToWebSocket({roomId: this.roomId, type: 'init-host'});
+    this.listenOnWebSockets();
+    this.signUp()
   }
 
-  selectedToEstimate(task){
+  private fetchTasks() {
+    this.service.getTasks().subscribe(
+      (data: any) => {
+        this.tasks = data;
+        this.service.tasks = data;
+      }, error => console.error(error)
+    )
+  }
+
+  private signUp() {
+    setTimeout(() => {
+      let ref = this.dialog.open(CreateUserComponent);
+      ref.afterClosed().subscribe(
+        data => {
+          if (data) {
+            this.service.setHostUser(data);
+          }
+        }
+      )
+    }, 10);
+  }
+
+  private listenOnWebSockets() {
+    this.service.websocket.onMessage(
+      (msg: MessageEvent) => {
+        console.log("onMessage ", msg.data);
+        const message = JSON.parse(msg.data);
+        const type = message.type;
+
+        if (type == 'estimation') {
+          this.estimation.push(message.content.estimate);
+          this.estimationMedian = this.median(this.estimation);
+        }
+
+      },
+      {autoApply: false}
+    )
+  }
+
+  sendToWebSocket(message) {
+    this.service.sendToWebSocket(message);
+  }
+
+  selectedToEstimate(task) {
+    this.estimation = [];
+    this.estimationMedian = 0;
     this.taskToEstimate = task;
-    this.service.selectTaskToEstimate(task).subscribe(
-      ()=> {},
-      error => console.error(error)
-    )
-
-    //TODO connect with backend and fetch estimations viw WS
-    setTimeout(() => this.estimation = [1,2,4,10,8], 1000);
-    this.estimationMedian = this.median([1,2,4,10,8])
+    const taskMessage = {roomId: this.roomId, type: 'task-selected', content: task};
+    this.sendToWebSocket(taskMessage);
   }
 
-  estimate(estimationResult){
-    if(estimationResult === 'restart'){
-      //TODO connect with backend and restart estimation process
-    }else{
-      //TODO connect with backend and send estimation result and close estimation process
+  onMenuChange(type: string) {
+    const message = {roomId: this.roomId, type: 'end'};
+    this.sendToWebSocket(message);
+    this.router.navigate(['/room/summary',this.roomId]);
+  }
+
+  estimate(estimationResult) {
+    if (estimationResult === 'restart') {
+      this.handleEstimationRestart();
+    } else if (estimationResult === 'show') {
+      this.handleEstimationShow();
+    } else {
+      this.handleEstimationFinish(estimationResult);
     }
   }
 
-  private median(values){
-    values.sort(function(a,b){
-      return a-b;
+  private handleEstimationShow() {
+    const showMessage = {roomId: this.roomId, type: 'show', content: {estimate: this.estimation}};
+    this.sendToWebSocket(showMessage);
+  }
+
+  private handleEstimationRestart() {
+    const taskMessage = {roomId: this.roomId, type: 'restart'};
+    this.estimation = [];
+    this.estimationMedian = 0;
+    this.sendToWebSocket(taskMessage);
+  }
+
+  private handleEstimationFinish(estimationResult) {
+    const taskMessage = {roomId: this.roomId, type: 'esimation-finish'};
+    this.estimation = [];
+    this.estimationMedian = 0;
+    this.sendToWebSocket(taskMessage);
+    this.service.estimateTask(this.taskToEstimate, estimationResult);
+    this.fetchTasks();
+    this.taskToEstimate = null;
+  }
+
+  private median(values) {
+    values.sort(function (a, b) {
+      return a - b;
     });
 
-    if(values.length ===0) return 0
+    if (values.length === 0) return 0
 
     let half = Math.floor(values.length / 2);
 

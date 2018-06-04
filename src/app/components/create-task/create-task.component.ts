@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RoomService} from '../../services/room.service';
 import {Observable} from 'rxjs/Observable';
+import {$WebSocket} from "angular2-websocket/angular2-websocket";
 
 @Component({
   selector: 'app-create-task',
@@ -9,18 +10,24 @@ import {Observable} from 'rxjs/Observable';
 })
 export class CreateTaskComponent implements OnInit {
 
-  model: any = {};
-  priorities: Observable<number[]>;
+  name: string;
+  description: string;
 
   constructor(private service: RoomService) {
   }
 
   ngOnInit() {
-    this.priorities = this.service.getPriorities();
   }
 
   onCreateTask(taskForm: any) {
-    console.log(taskForm);
+    console.log(this.name);
+    this.service.createTask(this.name).subscribe(
+      (data: any) => {
+        this.service.tasks.push(data);
+        this.service.sendToWebSocket({roomId: this.service.roomId, type: 'new-task'});
+      },
+      error => console.error(error)
+    );
   }
 
 }

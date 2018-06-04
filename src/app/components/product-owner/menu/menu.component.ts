@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {CreateTaskComponent} from '../../create-task/create-task.component';
 
@@ -8,6 +8,8 @@ import {CreateTaskComponent} from '../../create-task/create-task.component';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+
+  @Output() emitter: EventEmitter<string> = new EventEmitter();
 
   constructor(private dialog: MatDialog) {
   }
@@ -19,8 +21,7 @@ export class MenuComponent implements OnInit {
     this.dialog.open(CreateTaskComponent);
   }
 
-  endSession(){
-    //TODO integrate with backend WS to close room
+  endGame(){
+    this.emitter.emit('end');
   }
-
 }

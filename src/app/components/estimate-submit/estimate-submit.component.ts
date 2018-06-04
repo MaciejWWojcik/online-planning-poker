@@ -23,4 +23,8 @@ export class EstimateSubmitComponent implements OnInit {
     this.estimation.emit('restart');
   }
 
+  show(){
+    this.estimation.emit('show')
+  }
+
 }
