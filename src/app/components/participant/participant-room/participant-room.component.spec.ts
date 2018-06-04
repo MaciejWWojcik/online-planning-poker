@@ -4,7 +4,7 @@ import { ParticipantRoomComponent } from './participant-room.component';
 import {RoomService} from "../../../services/room.service";
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ActivatedRoute, RouterModule} from "@angular/router";
+import {ActivatedRoute, Router, RouterModule} from "@angular/router";
 import {MaterialModule} from "../../../material.module";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from "@angular/platform-browser";
@@ -23,6 +23,10 @@ describe('ParticipantRoomComponent', () => {
       providers: [RoomService,HttpClientModule,
         {
           provide: ActivatedRoute, useValue: {snapshot:{params:{id:'test'}}}
+        },{
+          provide: Router, useClass: class {
+            navigate = jasmine.createSpy("navigate");
+          }
         }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
     })
