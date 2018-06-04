@@ -20,8 +20,8 @@ import {EstimationComponent} from './components/estimation/estimation.component'
 import {EstimationResultComponent} from './components/estimation-result/estimation-result.component';
 import {CreateTaskComponent} from './components/create-task/create-task.component';
 import {MenuComponent} from './components/product-owner/menu/menu.component';
+import {SummaryComponent} from "./components/summary/summary.component";
 import {EstimateSubmitComponent} from "./components/estimate-submit/estimate-submit.component";
-
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import {EstimateSubmitComponent} from "./components/estimate-submit/estimate-sub
     EstimationComponent,
     EstimationResultComponent,
     MenuComponent,
+    SummaryComponent,
     EstimateSubmitComponent
   ],
   imports: [

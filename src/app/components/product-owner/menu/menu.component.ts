@@ -18,4 +18,9 @@ export class MenuComponent implements OnInit {
   onCreateButtonClicked() {
     this.dialog.open(CreateTaskComponent);
   }
+
+  endSession(){
+    //TODO integrate with backend WS to close room
+  }
+
 }
