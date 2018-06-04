@@ -48,7 +48,6 @@ export class ParticipantRoomComponent implements OnInit {
         console.log("onMessage ", msg.data);
         const message = JSON.parse(msg.data);
         const type = message.type;
-        console.log(type);
         if (type == 'task-selected') {
           this.taskToEstimate =message.content;
           this.estimationResult = null;

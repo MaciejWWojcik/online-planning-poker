@@ -2,7 +2,7 @@
 <mat-card-content>
   <form class="column-container" #taskForm="ngForm" (ngSubmit)="onCreateTask(taskForm)">
     <mat-form-field class="first-form-field">
-      <input matInput placeholder="Enter task name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+      <input matInput placeholder="Enter task name" required [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
     <mat-form-field>
       <textarea matInput placeholder="Enter task description" [(ngModel)]="description" [ngModelOptions]="{standalone: true}"></textarea>
