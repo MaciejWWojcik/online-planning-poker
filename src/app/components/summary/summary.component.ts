@@ -18,8 +18,8 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() {
     this.roomId = this.route.snapshot.params.id;
-    this.service.getSummary(this.roomId).subscribe(
-      data => this.summary = data,
+    this.service.getSummary().subscribe(
+      (data:any) => this.summary = data,
       error => console.error(error)
     )
   }

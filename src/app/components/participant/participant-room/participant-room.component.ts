@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {RoomService} from "../../../services/room.service";
 import {MatDialog, MatSnackBar} from "@angular/material";
 import {$WebSocket} from "angular2-websocket/angular2-websocket";
@@ -18,7 +18,7 @@ export class ParticipantRoomComponent implements OnInit {
   estimationResult:any[];
   canEstimate= false;
 
-  constructor(private route: ActivatedRoute, private service:RoomService, public info: MatSnackBar, public  dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private service:RoomService, public info: MatSnackBar, public  dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     this.roomId = this.route.snapshot.params.id;
@@ -63,7 +63,7 @@ export class ParticipantRoomComponent implements OnInit {
         } else if (type == 'show') {
           this.estimationResult = message.content.estimate;
         }else if (type == 'end') {
-          //TODO end
+          this.router.navigate(['/room/summary',this.roomId]);
         }
 
       },
