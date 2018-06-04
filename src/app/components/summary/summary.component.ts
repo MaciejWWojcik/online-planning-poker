@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from "@angular/material";
 import {RoomService} from "../../services/room.service";
 import {ActivatedRoute} from "@angular/router";
@@ -10,10 +10,11 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class SummaryComponent implements OnInit {
 
-  roomId:string;
+  roomId: string;
   summary: Summary;
 
-  constructor(private route: ActivatedRoute, private service:RoomService) { }
+  constructor(private route: ActivatedRoute, private service: RoomService) {
+  }
 
   ngOnInit() {
     this.roomId = this.route.snapshot.params.id;
@@ -25,9 +26,9 @@ export class SummaryComponent implements OnInit {
 
 }
 
-export interface Summary{
-  date:string;
+export interface Summary {
+  date: string;
   roomName: string;
-  tasks: {name:string, estimate:string}[];
-  participants: {name:string}[];
+  tasks: { name: string, estimate: string }[];
+  participants: { name: string }[];
 }
