@@ -5,6 +5,7 @@ import {RoomComponent} from './components/room/room.component';
 import {CreateTaskComponent} from './components/create-task/create-task.component';
 import {RoomComponent as Host} from './components/product-owner/room/room.component';
 import {ParticipantRoomComponent} from './components/participant/participant-room/participant-room.component';
+import {SummaryComponent} from "./components/summary/summary.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent,pathMatch: 'full'},
@@ -13,9 +14,11 @@ const appRoutes: Routes = [
     children: [
       {path: 'host/:id', component: Host},
       {path: 'participant/:id', component: ParticipantRoomComponent},
+      {path: 'summary/:id', component: SummaryComponent},
     ]
   },
   {path: 'create-task', component: CreateTaskComponent},
+
 ];
 
 @NgModule({
