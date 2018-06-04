@@ -24,8 +24,6 @@ describe('CreateTaskComponent', () => {
   }));
 
   beforeEach(() => {
-    mockService = {getPriorities: null} as RoomService;
-    spyOn(mockService, 'getPriorities').and.returnValue([1, 2]);
     fixture = TestBed.createComponent(CreateTaskComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

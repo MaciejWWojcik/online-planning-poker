@@ -20,7 +20,9 @@ import {EstimationComponent} from './components/estimation/estimation.component'
 import {EstimationResultComponent} from './components/estimation-result/estimation-result.component';
 import {CreateTaskComponent} from './components/create-task/create-task.component';
 import {MenuComponent} from './components/product-owner/menu/menu.component';
+import {SummaryComponent} from "./components/summary/summary.component";
 import {EstimateSubmitComponent} from "./components/estimate-submit/estimate-submit.component";
+import {CreateUserComponent} from "./components/create-user/create-user.component";
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import {EstimateSubmitComponent} from "./components/estimate-submit/estimate-sub
     EstimationComponent,
     EstimationResultComponent,
     MenuComponent,
-    EstimateSubmitComponent
+    EstimateSubmitComponent,
+    CreateUserComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,7 @@ import {EstimateSubmitComponent} from "./components/estimate-submit/estimate-sub
     NO_ERRORS_SCHEMA
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CreateRoomComponent]
+  entryComponents: [CreateRoomComponent, CreateUserComponent]
 })
 export class AppModule {
 }

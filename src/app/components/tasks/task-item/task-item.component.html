@@ -1,13 +1,9 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title *ngIf="task">{{task.name}}</mat-card-title>
-    <mat-card-subtitle>
-      <mat-icon *ngFor="let priority of getPriority()">priority_high</mat-icon>
-    </mat-card-subtitle>
+    <mat-card-title *ngIf="task">{{task.title}}</mat-card-title>
   </mat-card-header>
-
-  <mat-card-content>
-    <p *ngIf="task">{{task.description}}</p>
+  <mat-card-content *ngIf="task" >
+    <p>{{task.description}}</p>
+    <p>estimated: {{task.estimate}}</p>
   </mat-card-content>
-
 </mat-card>
