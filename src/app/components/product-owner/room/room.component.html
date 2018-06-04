@@ -1,0 +1,23 @@
+<mat-grid-list cols="15" rowHeight="fit" gutterSize="5">
+  <mat-grid-tile [colspan]="15" [rowspan]="1">
+    <mat-toolbar color="accent">Room: {{roomId}}   <span>link to invite: <a href="https://online-planning-poker.herokuapp.com/room/participant/{{roomId}}" target="_blank">open</a> </span> </mat-toolbar>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="15" [rowspan]="8">
+
+    <div fxLayout="column" class="tasks-container">
+      <div *ngIf="taskToEstimate" fxFill class="estimation-card">
+        <h3>Estimation</h3>
+        <div fxLayout="row" fxLayoutAlign="space-around center" class="estimation">
+          <app-task-item [task]="taskToEstimate"></app-task-item>
+          <app-estimation-result [values]="estimation"></app-estimation-result>
+          <app-estimate-submit class="controls" [estimationResult]="estimationMedian" (estimation)="estimate($event)"></app-estimate-submit>
+        </div>
+      </div>
+
+      <h3>Tasks</h3>
+      <app-task-list [tasks]="tasks" (taskSelected)="selectedToEstimate($event)"></app-task-list>
+    </div>
+
+  </mat-grid-tile>
+</mat-grid-list>
+<app-menu (emitter)="onMenuChange($event)"></app-menu>

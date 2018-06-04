@@ -1,0 +1,13 @@
+button {
+  display: block;
+  margin: 0 auto;
+}
+
+mat-dialog-content {
+  min-width: 400px;
+  min-height: 100px;
+}
+
+mat-form-field {
+  width: 100%;
+}

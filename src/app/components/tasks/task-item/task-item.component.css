@@ -1,0 +1,20 @@
+mat-card{
+  max-width: 200px;
+  padding: 24px 2px;
+}
+p{
+  font-size: .8em;
+  color:dimgrey;
+}
+mat-card-title{
+  font-weight: bold;
+  width: 190px;
+  word-break: break-word;
+}
+mat-card-subtitle > mat-icon{
+  font-size: 1.5em !important;
+  width: 10px;
+}
+mat-card{
+  background-color: #ffd740;
+}
