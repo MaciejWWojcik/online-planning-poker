@@ -114,7 +114,7 @@ export class RoomComponent implements OnInit {
     this.estimation = [];
     this.estimationMedian = 0;
     this.sendToWebSocket(taskMessage);
-    this.service.estimateTask(this.taskToEstimate, estimationResult);
+    this.service.estimateTask(this.taskToEstimate, estimationResult).subscribe();
     this.fetchTasks();
     this.taskToEstimate = null;
   }
