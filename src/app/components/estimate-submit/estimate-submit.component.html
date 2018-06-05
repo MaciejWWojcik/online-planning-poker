@@ -1,5 +1,5 @@
 <mat-form-field>
-  <input matInput placeholder="Estimation" required name="name" #name="ngModel" [ngModel]="estimationResult">
+  <input matInput placeholder="Estimation" required  [(ngModel)]="estimationResult">
 </mat-form-field>
 <button color="accent" mat-raised-button (click)="show()">Show estimations</button>
 <button color="accent" mat-raised-button (click)="save()">Save estimation</button>
