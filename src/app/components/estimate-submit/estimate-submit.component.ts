@@ -16,7 +16,7 @@ export class EstimateSubmitComponent implements OnInit {
   }
 
   save(){
-    this.estimation.emit(this.estimationResult);
+    this.estimation.emit(this.estimationResult+'');
   }
 
   restart(){

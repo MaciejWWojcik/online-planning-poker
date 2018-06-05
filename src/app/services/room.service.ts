@@ -25,7 +25,7 @@ export class RoomService {
   }
 
   estimateTask(task: any, value: string) {
-    return this.http.patch(this.base+'/api/tasks/'+task.id+'?estimate'+value,{});
+    return this.http.patch(this.base+'/api/tasks/'+task.id+'?estimate='+value,{});
   }
 
   createTask(title: string) {
