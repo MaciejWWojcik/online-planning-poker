@@ -1,0 +1,12 @@
+<mat-dialog-content>
+  <h1>Sign in</h1>
+  <div fxLayout="column">
+    <mat-form-field>
+      <input matInput type="email" placeholder="Email" [(ngModel)]="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" [(ngModel)]="password">
+    </mat-form-field>
+    <button mat-raised-button (click)="signIn()">Sign in</button>
+  </div>
+</mat-dialog-content>
