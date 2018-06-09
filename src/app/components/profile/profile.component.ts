@@ -15,7 +15,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.account.getSummaries().subscribe(
-      (data: any) => this.rooms = data,
+      (data: any) => {
+        this.rooms = data;
+        console.log(data)
+      },
       error => console.error(error)
     )
   }

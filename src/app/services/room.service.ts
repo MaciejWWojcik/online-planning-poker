@@ -45,6 +45,7 @@ export class RoomService {
   setHostUser(name: string, isEmail:boolean){
     let body;
     isEmail ? body={mailAddress: name} : body ={username: name};
+    console.log(body)
     return this.http.post(this.base+'/api/Rooms/'+this.roomId+'/po', body);
   }
 

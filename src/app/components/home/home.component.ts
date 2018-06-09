@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   isLogged = false;
 
-  constructor(public dialog: MatDialog, public infoBar: MatSnackBar, private router: Router, private account: AccountService) {
+  constructor(public dialog: MatDialog, public infoBar: MatSnackBar, private router: Router, public account: AccountService) {
   }
 
   ngOnInit() {

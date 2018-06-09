@@ -48,10 +48,11 @@ export class RoomComponent implements OnInit {
         data => {
           if (data) {
             let account = that.account.account;
+            console.log(account)
             if (account.mailAddress){
-              this.service.setHostUser(account.mailAddress, true);
+              this.service.setHostUser(account.mailAddress, true).subscribe();
             }else{
-              this.service.setHostUser(account.username, false);
+              this.service.setHostUser(account.username, false).subscribe();
             }
           }
         }
