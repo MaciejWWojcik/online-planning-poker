@@ -11,6 +11,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from "@angular/core";
 import {RoomService} from "../../services/room.service";
 import {FormsModule} from "@angular/forms";
 import {MatDialog, MatToolbar} from "@angular/material";
+import {AccountService} from "../../services/account.service";
 
 describe('TeamComponent', () => {
   let component: TeamComponent;
@@ -20,7 +21,7 @@ describe('TeamComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ TeamComponent ],
       imports: [MaterialModule, FormsModule, RouterTestingModule, BrowserModule,BrowserAnimationsModule, HttpClientModule],
-      providers: [MatDialog, MatToolbar, RoomService,
+      providers: [MatDialog, MatToolbar, AccountService,RoomService,
         {
           provide: ActivatedRoute, useValue: {snapshot:{params:{id:'test'}}}
         }, HttpClientModule

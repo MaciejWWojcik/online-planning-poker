@@ -10,7 +10,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from "@angular/core";
 import {RoomService} from "../../services/room.service";
 import {FormsModule} from "@angular/forms";
-import {MatDialog, MatToolbar} from "@angular/material";
+import {MatDialog, MatDialogRef, MatToolbar} from "@angular/material";
+import {AccountService} from "../../services/account.service";
 
 describe('TeamCreateComponent', () => {
   let component: TeamCreateComponent;
@@ -20,7 +21,7 @@ describe('TeamCreateComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ TeamCreateComponent ],
       imports: [MaterialModule, FormsModule, RouterTestingModule, BrowserModule,BrowserAnimationsModule, HttpClientModule],
-      providers: [MatDialog, MatToolbar, RoomService,
+      providers: [MatDialog, MatToolbar, AccountService,{provide: MatDialogRef, useValue: {}} ,RoomService,
         {
           provide: ActivatedRoute, useValue: {snapshot:{params:{id:'test'}}}
         }, HttpClientModule
