@@ -12,16 +12,16 @@ export class AccountService {
   }
 
   signUp(account: Account) {
-    // TODO send request
+    return this.http.put(this.base + '/api/Users', account)
   }
 
-  signIn(email: string, password: string){
+  signIn(mailAddress: string, password: string) {
     // TODO send request
   }
 
 }
 
 export class Account {
-  constructor(public username: string, public  email: string,password: string, public  team?: string) {
+  constructor(public username: string, public  mailAddress: string, public password: string, public  team?: string) {
   }
 }
