@@ -28,6 +28,8 @@ import {AccountService} from "./services/account.service";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {LoginComponent} from "./components/login/login.component";
 import {SummaryItemComponent} from "./components/summary-item/summary-item.component";
+import {TeamComponent} from "./components/team/team.component";
+import {TeamCreateComponent} from "./components/team-create/team-create.component";
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import {SummaryItemComponent} from "./components/summary-item/summary-item.compo
     SummaryComponent,
     ProfileComponent,
     LoginComponent,
-    SummaryItemComponent
+    SummaryItemComponent,
+    TeamComponent,
+    TeamCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +70,7 @@ import {SummaryItemComponent} from "./components/summary-item/summary-item.compo
     NO_ERRORS_SCHEMA
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CreateRoomComponent, CreateUserComponent, LoginComponent]
+  entryComponents: [CreateRoomComponent, CreateUserComponent, LoginComponent, TeamCreateComponent]
 })
 export class AppModule {
 }

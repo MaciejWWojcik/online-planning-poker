@@ -1,7 +1,8 @@
 <mat-toolbar color="primary">Online planning poker</mat-toolbar>
 <mat-tab-group>
   <mat-tab label="Teams">
-
+    <button mat-raised-button (click)="createTeam()">Create team</button>
+    <app-team *ngFor="let team of teams" [team]="team"></app-team>
   </mat-tab>
   <mat-tab label="History">
 

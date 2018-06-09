@@ -1,0 +1,9 @@
+<mat-dialog-content>
+  <h1>Create team</h1>
+  <div fxLayout="column">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Name" [(ngModel)]="name">
+    </mat-form-field>
+    <button mat-raised-button (click)="createTeam()">create</button>
+  </div>
+</mat-dialog-content>
