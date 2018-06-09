@@ -24,7 +24,7 @@ export class AccountService {
     if(!this.account){
       return Observable.of(false)
     }
-    return this.http.get(this.base + '/api/'+this.account.mailAddress+'/summaries');
+    return this.http.get(this.base + '/api/Users/'+this.account.mailAddress+'/summarizes');
   }
 
 }

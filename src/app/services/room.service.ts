@@ -36,12 +36,16 @@ export class RoomService {
     return this.http.get(this.base+'/api/rooms/'+this.roomId+'/summary');
   }
 
-  setUser(name: string){
-    return this.http.post(this.base+'/api/Users/join', {name: name, roomId: this.roomId});
+  setUser(name: string, isEmail:boolean){
+    let body;
+    isEmail ? body={mailAddress: name} : body ={username: name};
+    return this.http.post(this.base+'/api/Rooms/'+this.roomId+'/participant', body);
   }
 
-  setHostUser(name: string){
-    return this.http.post(this.base+'/api/Users/po/join', {name: name, roomId: this.roomId});
+  setHostUser(name: string, isEmail:boolean){
+    let body;
+    isEmail ? body={mailAddress: name} : body ={username: name};
+    return this.http.post(this.base+'/api/Rooms/'+this.roomId+'/po', body);
   }
 
   sendToWebSocket(message){

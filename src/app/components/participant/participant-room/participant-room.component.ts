@@ -4,6 +4,7 @@ import {RoomService} from "../../../services/room.service";
 import {MatDialog, MatSnackBar} from "@angular/material";
 import {$WebSocket} from "angular2-websocket/angular2-websocket";
 import {CreateUserComponent} from "../../create-user/create-user.component";
+import {AccountService} from "../../../services/account.service";
 
 @Component({
   selector: 'app-participant-room',
@@ -18,7 +19,7 @@ export class ParticipantRoomComponent implements OnInit {
   estimationResult:any[];
   canEstimate= false;
 
-  constructor(private route: ActivatedRoute, private service:RoomService, public info: MatSnackBar, public  dialog: MatDialog, private router: Router) { }
+  constructor(private route: ActivatedRoute, private service:RoomService, public info: MatSnackBar, public  dialog: MatDialog, private router: Router, private account: AccountService) { }
 
   ngOnInit() {
     this.roomId = this.route.snapshot.params.id;
@@ -30,12 +31,16 @@ export class ParticipantRoomComponent implements OnInit {
   }
 
   private signUp() {
+    const that = this;
     setTimeout(() => {
       let ref = this.dialog.open(CreateUserComponent);
       ref.afterClosed().subscribe(
         data => {
-          if (data) {
-            this.service.setUser(data);
+          let account = that.account.account;
+          if (account.mailAddress){
+            this.service.setHostUser(account.mailAddress, true);
+          }else{
+            this.service.setHostUser(account.username, false);
           }
         }
       )

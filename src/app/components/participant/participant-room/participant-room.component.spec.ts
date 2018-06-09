@@ -11,6 +11,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {TaskItemComponent} from "../../tasks/task-item/task-item.component";
 import {EstimationComponent} from "../../estimation/estimation.component";
 import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from "@angular/core";
+import {AccountService} from "../../../services/account.service";
 
 describe('ParticipantRoomComponent', () => {
   let component: ParticipantRoomComponent;
@@ -20,7 +21,7 @@ describe('ParticipantRoomComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ParticipantRoomComponent, TaskItemComponent, EstimationComponent],
       imports: [MaterialModule, FormsModule, HttpClientModule, RouterModule, BrowserModule,BrowserAnimationsModule],
-      providers: [RoomService,HttpClientModule,
+      providers: [RoomService,AccountService ,HttpClientModule,
         {
           provide: ActivatedRoute, useValue: {snapshot:{params:{id:'test'}}}
         },{
