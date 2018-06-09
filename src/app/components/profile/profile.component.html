@@ -4,6 +4,6 @@
 
   </mat-tab>
   <mat-tab label="History">
-
+    <app-summary-item *ngFor="let room of rooms" [summary]="room"></app-summary-item>
   </mat-tab>
 </mat-tab-group>

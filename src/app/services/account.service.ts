@@ -19,6 +19,10 @@ export class AccountService {
     return this.http.post(this.base + '/api/Users', {mailAddress: mailAddress, password: password});
   }
 
+  getSummaries(){
+    return this.http.get(this.base + '/api/'+this.account.mailAddress+'/summaries');
+  }
+
 }
 
 export class Account {

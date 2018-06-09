@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Summary} from "../summary/summary.component";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  rooms: Summary[];
+
+  constructor(private account: AccountService) { }
 
   ngOnInit() {
+    this.account.getSummaries().subscribe(
+      (data: any) => this.rooms = data,
+      error => console.error(error)
+    )
   }
 
 }
