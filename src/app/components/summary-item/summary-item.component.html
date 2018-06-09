@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-card>
+  <mat-card *ngIf="summary">
     <mat-card-header>
       <mat-card-title>{{summary.roomName}}</mat-card-title>
       <mat-card-subtitle>{{summary.date}}</mat-card-subtitle>

@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class AccountService {
@@ -20,6 +21,9 @@ export class AccountService {
   }
 
   getSummaries(){
+    if(!this.account){
+      return Observable.of(false)
+    }
     return this.http.get(this.base + '/api/'+this.account.mailAddress+'/summaries');
   }
 

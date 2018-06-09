@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatDialog, MatDialogModule, MatDialogRef, MatToolbar} from "@angular/material";
 import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from "@angular/core";
 import {BrowserDynamicTestingModule} from "@angular/platform-browser-dynamic/testing";
+import {AccountService} from "../../services/account.service";
 
 describe('CreateUserComponent', () => {
   let component: CreateUserComponent;
@@ -20,7 +21,7 @@ describe('CreateUserComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CreateUserComponent ],
       imports: [MatDialogModule,MaterialModule, FormsModule, HttpClientModule, RouterModule, BrowserModule,BrowserAnimationsModule],
-      providers: [MatDialog, MatToolbar, RoomService, HttpClientModule,
+      providers: [MatDialog, MatToolbar, RoomService, AccountService, HttpClientModule,
         {provide: MatDialogRef, useValue: {}},
         {
           provide: Router, useClass: class {
