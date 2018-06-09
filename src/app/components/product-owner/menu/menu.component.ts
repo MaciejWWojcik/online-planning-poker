@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {CreateTaskComponent} from '../../create-task/create-task.component';
+import {ImportTasksComponent} from '../../import-tasks/import-tasks.component';
 
 @Component({
   selector: 'app-menu',
@@ -21,7 +22,11 @@ export class MenuComponent implements OnInit {
     this.dialog.open(CreateTaskComponent);
   }
 
-  endGame(){
+  endGame() {
     this.emitter.emit('end');
+  }
+
+  importTasks() {
+    this.dialog.open(ImportTasksComponent);
   }
 }

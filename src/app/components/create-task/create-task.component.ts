@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {RoomService} from '../../services/room.service';
-import {Observable} from 'rxjs/Observable';
-import {$WebSocket} from "angular2-websocket/angular2-websocket";
 
 @Component({
   selector: 'app-create-task',
