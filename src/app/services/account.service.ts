@@ -6,10 +6,12 @@ export class AccountService {
 
   base = 'http://plpoker-api.azurewebsites.net';
 
+  public account;
+
   constructor(private http: HttpClient) {
   }
 
-  singUp(account: Acccount) {
+  signUp(account: Account) {
     // TODO send request
   }
 
@@ -19,7 +21,7 @@ export class AccountService {
 
 }
 
-export class Acccount {
-  constructor(public username: string, public  email: string, public  password: string, public  team?: string) {
+export class Account {
+  constructor(public username: string, public  email: string,password: string, public  team?: string) {
   }
 }
