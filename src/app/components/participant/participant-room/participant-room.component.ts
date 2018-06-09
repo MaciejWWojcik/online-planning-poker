@@ -5,6 +5,7 @@ import {MatDialog, MatSnackBar} from "@angular/material";
 import {$WebSocket} from "angular2-websocket/angular2-websocket";
 import {CreateUserComponent} from "../../create-user/create-user.component";
 import {AccountService} from "../../../services/account.service";
+import {DiscussionComponent} from "../../discussion/discussion.component";
 
 @Component({
   selector: 'app-participant-room',
@@ -18,7 +19,7 @@ export class ParticipantRoomComponent implements OnInit {
   taskToEstimate: any;
   estimationResult:any[];
   canEstimate= false;
-
+  dialogRef;
   constructor(private route: ActivatedRoute, private service:RoomService, public info: MatSnackBar, public  dialog: MatDialog, private router: Router, private account: AccountService) { }
 
   ngOnInit() {
@@ -69,6 +70,14 @@ export class ParticipantRoomComponent implements OnInit {
           this.estimationResult = message.content.estimate;
         }else if (type == 'end') {
           this.router.navigate(['/room/summary',this.roomId]);
+        }else if (type == 'discuss') {
+          this.dialogRef = this.dialog.open(DiscussionComponent, {width:'600px', height:'400px'});
+          this.dialogRef.componentInstance.estimates = message.content.estimate;
+          this.dialogRef.componentInstance.task = this.taskToEstimate;
+        }else if (type == 'chat') {
+          if(this.dialogRef){
+            this.dialogRef.componentInstance.addMessage(message.content)
+          }
         }
 
       },

@@ -30,6 +30,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {SummaryItemComponent} from "./components/summary-item/summary-item.component";
 import {TeamComponent} from "./components/team/team.component";
 import {TeamCreateComponent} from "./components/team-create/team-create.component";
+import {DiscussionComponent} from "./components/discussion/discussion.component";
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import {TeamCreateComponent} from "./components/team-create/team-create.componen
     LoginComponent,
     SummaryItemComponent,
     TeamComponent,
-    TeamCreateComponent
+    TeamCreateComponent,
+    DiscussionComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,7 @@ import {TeamCreateComponent} from "./components/team-create/team-create.componen
     NO_ERRORS_SCHEMA
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CreateRoomComponent, CreateUserComponent, LoginComponent, TeamCreateComponent]
+  entryComponents: [CreateRoomComponent, CreateUserComponent, LoginComponent, TeamCreateComponent, DiscussionComponent]
 })
 export class AppModule {
 }
