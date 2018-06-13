@@ -9,7 +9,6 @@ import {$WebSocket} from "angular2-websocket/angular2-websocket";
 export class RoomService {
 
   public roomId;
-  string;
   public socketId: string;
   public tasks: Task[] = [];
   public taskVotes: Map<number, number> = new Map<number, number>();
