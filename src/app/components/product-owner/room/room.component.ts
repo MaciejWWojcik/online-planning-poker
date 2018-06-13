@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {RoomService} from "../../../services/room.service";
 import {$WebSocket} from "angular2-websocket/angular2-websocket";
@@ -17,12 +17,13 @@ export class RoomComponent implements OnInit {
 
   roomId: string;
   tasks: any[] = [];
+  taskVotes: Map<any, number> = new Map<any, number>();
   taskToEstimate: any;
   estimation: string[] = [];
   estimationMedian: number;
   dialogRef;
 
-  constructor(private route: ActivatedRoute, private service: RoomService, public dialog: MatDialog, private router: Router, private account: AccountService) {
+  constructor(private route: ActivatedRoute, private service: RoomService, public dialog: MatDialog, private router: Router, private account: AccountService, private changeDetector: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -43,6 +44,9 @@ export class RoomComponent implements OnInit {
       (data: any) => {
         this.tasks = data;
         this.service.tasks = data;
+        this.tasks.forEach(task => {
+          this.taskVotes.set(task, 0);
+        })
       }, error => console.error(error)
     )
   }
@@ -81,6 +85,11 @@ export class RoomComponent implements OnInit {
           this.estimationMedian = this.median(this.estimation);
         }else if (type == 'chat') {
           this.dialogRef.componentInstance.addMessage(message.content)
+        }else if (type == 'vote-for-task'){
+          let task = message.content.task;
+          let value = this.taskVotes.get(task);
+          this.taskVotes.set(task, value++);
+          this.changeDetector.detectChanges();
         }
 
       },

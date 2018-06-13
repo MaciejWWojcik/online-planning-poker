@@ -12,3 +12,7 @@ app-task-item{
   display: flex;
   flex-wrap: wrap;
 }
+
+/deep/ .highlated > mat-card{
+  background-color: #ff9800 !important;
+}
