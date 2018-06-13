@@ -45,7 +45,7 @@ export class ParticipantRoomComponent implements OnInit {
             this.service.setUser(account.username, false).subscribe();
           }
         }
-      )
+      );
     }, 10);
   }
 

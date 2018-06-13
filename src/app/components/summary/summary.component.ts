@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material";
-import {RoomService} from "../../services/room.service";
-import {ActivatedRoute} from "@angular/router";
+import {RoomService} from '../../services/room.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-summary',
@@ -19,12 +18,11 @@ export class SummaryComponent implements OnInit {
   ngOnInit() {
     this.roomId = this.route.snapshot.params.id;
     this.service.getSummary().subscribe(
-      (data:any) => {
-        console.log(data)
-        this.summary = data
+      (data: any) => {
+        this.summary = data;
       },
       error => console.error(error)
-    )
+    );
   }
 
 }
@@ -32,6 +30,6 @@ export class SummaryComponent implements OnInit {
 export interface Summary {
   date: string;
   roomName: string;
-  tasks: { name: string, estimate: string }[];
-  participants: { name: string }[];
+  tasks: { title: string, estimate: string }[];
+  participants: { userName: string }[];
 }
