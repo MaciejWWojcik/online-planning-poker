@@ -28,7 +28,11 @@ export class RoomComponent implements OnInit {
     this.fetchTasks();
     this.sendToWebSocket({roomId: this.roomId, type: 'init-host'});
     this.listenOnWebSockets();
-    this.signUp()
+    if(!this.account.account){
+      this.signUp()
+    }else{
+      this.setUser();
+    }
   }
 
   private fetchTasks() {
@@ -47,17 +51,20 @@ export class RoomComponent implements OnInit {
       ref.afterClosed().subscribe(
         data => {
           if (data) {
-            let account = that.account.account;
-            console.log(account)
-            if (account.mailAddress){
-              this.service.setHostUser(account.mailAddress, true).subscribe();
-            }else{
-              this.service.setHostUser(account.username, false).subscribe();
-            }
+            this.setUser();
           }
         }
       )
     }, 10);
+  }
+
+  private setUser() {
+    let account = this.account.account;
+    if (account.mailAddress) {
+      this.service.setHostUser(account.mailAddress, true).subscribe();
+    } else {
+      this.service.setHostUser(account.username, false).subscribe();
+    }
   }
 
   private listenOnWebSockets() {
