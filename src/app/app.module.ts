@@ -23,6 +23,8 @@ import {MenuComponent} from './components/product-owner/menu/menu.component';
 import {SummaryComponent} from "./components/summary/summary.component";
 import {EstimateSubmitComponent} from "./components/estimate-submit/estimate-submit.component";
 import {CreateUserComponent} from "./components/create-user/create-user.component";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {AccountService} from "./services/account.service";
 
 
 @NgModule({
@@ -48,11 +50,12 @@ import {CreateUserComponent} from "./components/create-user/create-user.componen
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FlexLayoutModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [RoomService],
+  providers: [RoomService, AccountService],
   schemas: [
     NO_ERRORS_SCHEMA
   ],
