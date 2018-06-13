@@ -139,9 +139,10 @@ export class RoomComponent implements OnInit {
     const taskMessage = {roomId: this.roomId, type: 'esimation-finish'};
     this.estimation = [];
     this.estimationMedian = 0;
-    this.sendToWebSocket(taskMessage);
-    this.service.estimateTask(this.taskToEstimate, estimationResult).subscribe();
-    this.fetchTasks();
+    this.service.estimateTask(this.taskToEstimate, estimationResult).subscribe(()=>{
+      this.fetchTasks();
+      this.sendToWebSocket(taskMessage);
+    });
     this.taskToEstimate = null;
   }
 
