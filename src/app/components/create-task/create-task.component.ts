@@ -24,6 +24,7 @@ export class CreateTaskComponent implements OnInit {
     this.service.createTask(this.name).subscribe(
       (data: any) => {
         this.service.tasks.push(data);
+        this.service.taskVotes.set(data.id, 0);
         this.service.sendToWebSocket({roomId: this.service.roomId, type: 'new-task'});
       },
       error => console.error(error)

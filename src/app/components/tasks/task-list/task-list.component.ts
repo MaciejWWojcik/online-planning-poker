@@ -9,7 +9,7 @@ export class TaskListComponent implements OnInit {
 
   taskHighlated;
   @Input() tasks:any[];
-  @Input() tasksVotes: Map<any, number>;
+  @Input() tasksVotes: Map<number, number>;
   @Output() taskSelected:EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
@@ -24,7 +24,7 @@ export class TaskListComponent implements OnInit {
 
   getVotesForTask(task){
     if(this.tasksVotes){
-      return this.tasksVotes.get(task);
+      return this.tasksVotes.get(task.id);
     }else{
       return null;
     }
