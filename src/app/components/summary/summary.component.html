@@ -6,7 +6,7 @@
       <mat-card-subtitle>{{summary.date}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <div class="section">
+      <div>
         <h5>Tasks</h5>
         <mat-list *ngFor="let task of summary.tasks" dense>
           <mat-list-item>
@@ -28,5 +28,5 @@
       </div>
     </mat-card-content>
   </mat-card>
-
+  <button class="export-button" mat-flat-button (click)="downloadCSV()">Download CSV</button>
 </div>

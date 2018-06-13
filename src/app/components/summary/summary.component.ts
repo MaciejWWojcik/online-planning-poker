@@ -25,6 +25,10 @@ export class SummaryComponent implements OnInit {
     );
   }
 
+  downloadCSV() {
+    this.service.downloadCSV();
+  }
+
 }
 
 export interface Summary {
