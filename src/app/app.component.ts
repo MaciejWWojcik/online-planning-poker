@@ -1,4 +1,4 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +9,5 @@ import {Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core
 export class AppComponent {
   title = 'Online Planning Poker';
   subtitle = 'TSD project 2018';
-  members: string[] = ["Mateusz Kiciński", "Piotr Mitkowski", "Maciej Wójcik"];
+  members: string[] = ['Mateusz Kiciński', 'Piotr Mitkowski', 'Maciej Wójcik'];
 }

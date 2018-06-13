@@ -1,2 +1,10 @@
-<button mat-mini-fab color="primary" (click)="onCreateButtonClicked()"><mat-icon>library_add</mat-icon></button>
-<button mat-mini-fab  color="warn" (click)="endGame()"><mat-icon>close</mat-icon></button>
+<button mat-mini-fab color="primary" (click)="onCreateButtonClicked()">
+  <mat-icon>library_add</mat-icon>
+</button>
+<button mat-mini-fab color="primary" (click)="importTasks()" matTooltip="Import tasks">
+  <mat-icon>file_upload</mat-icon>
+</button>
+<button mat-mini-fab color="warn" (click)="endGame()">
+  <mat-icon>close</mat-icon>
+</button>
+
