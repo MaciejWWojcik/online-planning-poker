@@ -5,6 +5,7 @@ import {Task} from '../classes/task';
 import {$WebSocket} from 'angular2-websocket/angular2-websocket';
 import {map} from 'rxjs/operators';
 
+
 @Injectable()
 export class RoomService {
 
@@ -68,15 +69,7 @@ export class RoomService {
       }
     );
   }
-
-  downloadCSV() {
-    const path = this.base + '/api/Rooms/' + this.roomId + '/summary/export/csv';
-    this.http.get(path, {responseType: 'blob'})
-      .pipe(map((response: Blob) => {
-        window.open(window.URL.createObjectURL(response));
-      })).subscribe();
-  }
-
+  
   sendCSVFileToParse(httpFile: any, delimeter: string) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'text/csv');
@@ -85,5 +78,12 @@ export class RoomService {
     formData.append('httpFile', httpFile, httpFile.name);
     return this.http.post(this.base + '/api/tasks/' + this.roomId + '/parse?delimiter=' + delimeter, formData, options);
   }
-
+  
+  downloadCSV() {
+    const path = this.base + '/api/Rooms/' + this.roomId + '/summary/export/csv';
+    this.http.get(path, {responseType: 'blob'})
+      .pipe(map((response: Blob) => {
+        window.open(window.URL.createObjectURL(response));
+      })).subscribe();
+  }
 }
