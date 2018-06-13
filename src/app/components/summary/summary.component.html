@@ -6,13 +6,13 @@
       <mat-card-subtitle>{{summary.date}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <div class="section">
+      <div>
         <h5>Tasks</h5>
         <mat-list *ngFor="let task of summary.tasks" dense>
           <mat-list-item>
             <p matLine>
               <span class="left">{{task.estimate}}</span>
-              <span class="right">{{task.name}}</span>
+              <span class="right">{{task.title}}</span>
             </p>
           </mat-list-item>
         </mat-list>
@@ -22,11 +22,11 @@
         <h5>Participants</h5>
         <mat-list *ngFor="let participant of summary.participants" dense>
           <mat-list-item>
-            <p matLine>{{participant.name}}</p>
+            <p matLine>{{participant.userName}}</p>
           </mat-list-item>
         </mat-list>
       </div>
     </mat-card-content>
   </mat-card>
-
+  <button class="export-button" mat-flat-button (click)="downloadCSV()">Download CSV</button>
 </div>
