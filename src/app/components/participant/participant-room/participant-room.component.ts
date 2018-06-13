@@ -39,12 +39,12 @@ export class ParticipantRoomComponent implements OnInit {
         data => {
           let account = that.account.account;
           if (account.mailAddress){
-            this.service.setHostUser(account.mailAddress, true);
+            this.service.setUser(account.mailAddress, true).subscribe();
           }else{
-            this.service.setHostUser(account.username, false);
+            this.service.setUser(account.username, false).subscribe();
           }
         }
-      )
+      );
     }, 10);
   }
 
