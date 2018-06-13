@@ -4,6 +4,7 @@ import {RoomService} from "../../../services/room.service";
 import {$WebSocket} from "angular2-websocket/angular2-websocket";
 import {MatDialog} from "@angular/material";
 import {CreateUserComponent} from "../../create-user/create-user.component";
+import {AccountService} from "../../../services/account.service";
 
 @Component({
   selector: 'app-room',
@@ -18,7 +19,7 @@ export class RoomComponent implements OnInit {
   estimation: number[] = [];
   estimationMedian: number;
 
-  constructor(private route: ActivatedRoute, private service: RoomService, public dialog: MatDialog, private router: Router) {
+  constructor(private route: ActivatedRoute, private service: RoomService, public dialog: MatDialog, private router: Router, private account: AccountService) {
   }
 
   ngOnInit() {
@@ -40,12 +41,19 @@ export class RoomComponent implements OnInit {
   }
 
   private signUp() {
+    const that = this;
     setTimeout(() => {
       let ref = this.dialog.open(CreateUserComponent);
       ref.afterClosed().subscribe(
         data => {
           if (data) {
-            this.service.setHostUser(data);
+            let account = that.account.account;
+            console.log(account)
+            if (account.mailAddress){
+              this.service.setHostUser(account.mailAddress, true).subscribe();
+            }else{
+              this.service.setHostUser(account.username, false).subscribe();
+            }
           }
         }
       )

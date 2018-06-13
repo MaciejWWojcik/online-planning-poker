@@ -27,6 +27,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {AccountService} from "./services/account.service";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {LoginComponent} from "./components/login/login.component";
+import {SummaryItemComponent} from "./components/summary-item/summary-item.component";
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import {LoginComponent} from "./components/login/login.component";
     CreateUserComponent,
     SummaryComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    SummaryItemComponent
   ],
   imports: [
     BrowserModule,
