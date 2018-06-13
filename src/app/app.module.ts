@@ -25,6 +25,8 @@ import {EstimateSubmitComponent} from "./components/estimate-submit/estimate-sub
 import {CreateUserComponent} from "./components/create-user/create-user.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {AccountService} from "./services/account.service";
+import {ProfileComponent} from "./components/profile/profile.component";
+import {LoginComponent} from "./components/login/login.component";
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import {AccountService} from "./services/account.service";
     MenuComponent,
     EstimateSubmitComponent,
     CreateUserComponent,
-    SummaryComponent
+    SummaryComponent,
+    ProfileComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,7 @@ import {AccountService} from "./services/account.service";
     NO_ERRORS_SCHEMA
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CreateRoomComponent, CreateUserComponent]
+  entryComponents: [CreateRoomComponent, CreateUserComponent, LoginComponent]
 })
 export class AppModule {
 }

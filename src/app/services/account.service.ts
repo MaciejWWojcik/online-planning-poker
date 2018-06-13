@@ -16,7 +16,7 @@ export class AccountService {
   }
 
   signIn(mailAddress: string, password: string) {
-    // TODO send request
+    return this.http.post(this.base + '/api/Users', {mailAddress: mailAddress, password: password});
   }
 
 }
