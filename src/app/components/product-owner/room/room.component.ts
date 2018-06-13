@@ -19,6 +19,7 @@ export class RoomComponent implements OnInit {
   tasks: any[] = [];
   taskToEstimate: any;
   estimation: string[] = [];
+  estimationsWithId = [];
   estimationMedian: number;
   dialogRef;
 
@@ -80,15 +81,19 @@ export class RoomComponent implements OnInit {
         const type = message.type;
 
         if (type == 'estimation') {
-          this.estimation.push(message.content.estimate);
+          const estimate = message.content.estimate;
+          this.estimation.push(estimate);
+          this.estimationsWithId.push({estimate:estimate, socketId: message.socketId});
           this.estimationMedian = this.median(this.estimation);
         }else if (type == 'chat') {
-          this.dialogRef.componentInstance.addMessage(message.content)
+          this.dialogRef.componentInstance.addMessage(message.content.message)
         }else if (type == 'vote-for-task'){
           let task = message.content.task;
           let value = this.service.taskVotes.get(task.id);
           this.service.taskVotes.set(task.id, ++value);
           this.changeDetector.detectChanges();
+        }else if(type == 'sockets-ready'){
+          this.service.socketId = message.socketId;
         }
 
       },
@@ -116,8 +121,7 @@ export class RoomComponent implements OnInit {
     } else if (estimationResult === 'show') {
       this.handleEstimationShow();
     } else if(estimationResult === 'discuss'){
-      this.service.sendToWebSocket({roomId: this.roomId, type: 'discuss', content: {estimate:this.estimation}})
-
+      this.service.sendToWebSocket({roomId: this.roomId, type: 'discussion', content: {estimates:this.estimationsWithId}})
       this.dialogRef = this.dialog.open(DiscussionComponent, {width:'600px', height:'400px'});
       this.dialogRef.componentInstance.estimates = this.estimation;
       this.dialogRef.componentInstance.task = this.taskToEstimate;

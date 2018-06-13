@@ -76,15 +76,20 @@ export class ParticipantRoomComponent implements OnInit {
         }else if (type == 'end') {
           this.router.navigate(['/room/summary',this.roomId]);
           this.info.open('End of planning game', '', this.infoConfig)
-        }else if (type == 'discuss') {
+        }else if (type == 'discussion') {
           this.dialogRef = this.dialog.open(DiscussionComponent, {width:'600px', height:'400px'});
-          this.dialogRef.componentInstance.estimates = message.content.estimate;
+          this.dialogRef.componentInstance.estimates = [];
+          message.content.estimates.forEach(estimate => this.dialogRef.componentInstance.estimates.push(estimate.estimate))
           this.dialogRef.componentInstance.task = this.taskToEstimate;
           this.info.open('Product Owner started discussion', '', this.infoConfig)
         }else if (type == 'chat') {
           if(this.dialogRef){
-            this.dialogRef.componentInstance.addMessage(message.content)
+            this.dialogRef.componentInstance.addMessage(message.content.message)
           }
+        }else if(type == 'sockets-ready'){
+          this.service.socketId = message.socketId;
+        }else if(type == 'start-discussion'){
+          this.dialogRef.componentInstance.helloMessage = true;
         }
 
       },

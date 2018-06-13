@@ -10,6 +10,11 @@
         <span class="content">{{message.content}}</span>
       </mat-card>
 
+      <mat-card class="message" *ngIf="helloMessage">
+        <span class="sender">You selected extreme number of points</span>
+        <span class="content">Please write why you chose this number of points </span>
+      </mat-card>
+
       <div fxLayout="row" class="input-message">
         <mat-form-field>
           <input matInput type="text" placeholder="message" [(ngModel)]="message">
