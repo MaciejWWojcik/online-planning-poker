@@ -20,6 +20,7 @@ export class ParticipantRoomComponent implements OnInit {
   estimationResult:any[];
   canEstimate= false;
   dialogRef;
+  infoConfig = {duration:3000};
   constructor(private route: ActivatedRoute, private service:RoomService, public info: MatSnackBar, public  dialog: MatDialog, private router: Router, private account: AccountService) { }
 
   ngOnInit() {
@@ -39,9 +40,9 @@ export class ParticipantRoomComponent implements OnInit {
         data => {
           let account = that.account.account;
           if (account.mailAddress){
-            this.service.setHostUser(account.mailAddress, true);
+            this.service.setUser(account.mailAddress, true).subscribe();
           }else{
-            this.service.setHostUser(account.username, false);
+            this.service.setUser(account.username, false).subscribe();
           }
         }
       )
@@ -58,22 +59,28 @@ export class ParticipantRoomComponent implements OnInit {
           this.taskToEstimate =message.content;
           this.estimationResult = null;
           this.canEstimate = true;
+          this.info.open('Estimation started', '', this.infoConfig)
         } else if (type == 'restart') {
           this.estimationResult = null;
           this.canEstimate = true;
+          this.info.open('Product Onwer restarted task estimation', '', this.infoConfig)
         } else if (type == 'esimation-finish') {
           this.canEstimate = true;
           this.fetchTasks();
+          this.info.open('Task estimation finished', '', this.infoConfig)
         } else if (type == 'new-task') {
           this.fetchTasks();
         } else if (type == 'show') {
           this.estimationResult = message.content.estimate;
+          this.info.open('Product Owner send you estimates', '', this.infoConfig)
         }else if (type == 'end') {
           this.router.navigate(['/room/summary',this.roomId]);
+          this.info.open('End of planning game', '', this.infoConfig)
         }else if (type == 'discuss') {
           this.dialogRef = this.dialog.open(DiscussionComponent, {width:'600px', height:'400px'});
           this.dialogRef.componentInstance.estimates = message.content.estimate;
           this.dialogRef.componentInstance.task = this.taskToEstimate;
+          this.info.open('Product Owner started discussion', '', this.infoConfig)
         }else if (type == 'chat') {
           if(this.dialogRef){
             this.dialogRef.componentInstance.addMessage(message.content)
@@ -93,11 +100,18 @@ export class ParticipantRoomComponent implements OnInit {
     )
   }
 
+  voteForTask(event){
+    const message = {roomId: this.roomId, type: 'vote-for-task', content: {task: event}};
+    this.service.sendToWebSocket(message);
+    this.info.open('Successfully voted for next task to estimate', '', this.infoConfig)
+  }
+
   estimateTask(value){
     if(this.canEstimate){
       const initMessage = {roomId: this.roomId, type: 'estimation', content: {estimate: value}};
       this.sendToWebSocket(initMessage);
       this.canEstimate = false;
+      this.info.open('Task estimated successfully', '', this.infoConfig)
     }
   }
 

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {RoomService} from "../../../services/room.service";
 import {$WebSocket} from "angular2-websocket/angular2-websocket";
@@ -22,14 +22,14 @@ export class RoomComponent implements OnInit {
   estimationMedian: number;
   dialogRef;
 
-  constructor(private route: ActivatedRoute, private service: RoomService, public dialog: MatDialog, private router: Router, private account: AccountService) {
+  constructor(private route: ActivatedRoute, public service: RoomService, public dialog: MatDialog, private router: Router, private account: AccountService, private changeDetector: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.roomId = this.route.snapshot.params.id;
     this.service.roomId = this.roomId;
     this.fetchTasks();
-    this.sendToWebSocket({roomId: this.roomId, type: 'init-host'});
+    this.service.sendToWebSocket({roomId: this.roomId, type: 'init-host'});
     this.listenOnWebSockets();
     if(!this.account.account){
       this.signUp()
@@ -43,6 +43,9 @@ export class RoomComponent implements OnInit {
       (data: any) => {
         this.tasks = data;
         this.service.tasks = data;
+        this.tasks.forEach(task => {
+          this.service.taskVotes.set(task.id, 0);
+        })
       }, error => console.error(error)
     )
   }
@@ -81,6 +84,11 @@ export class RoomComponent implements OnInit {
           this.estimationMedian = this.median(this.estimation);
         }else if (type == 'chat') {
           this.dialogRef.componentInstance.addMessage(message.content)
+        }else if (type == 'vote-for-task'){
+          let task = message.content.task;
+          let value = this.service.taskVotes.get(task.id);
+          this.service.taskVotes.set(task.id, ++value);
+          this.changeDetector.detectChanges();
         }
 
       },
@@ -88,21 +96,17 @@ export class RoomComponent implements OnInit {
     )
   }
 
-  sendToWebSocket(message) {
-    this.service.sendToWebSocket(message);
-  }
-
   selectedToEstimate(task) {
     this.estimation = [];
     this.estimationMedian = 0;
     this.taskToEstimate = task;
     const taskMessage = {roomId: this.roomId, type: 'task-selected', content: task};
-    this.sendToWebSocket(taskMessage);
+    this.service.sendToWebSocket(taskMessage);
   }
 
   onMenuChange(type: string) {
     const message = {roomId: this.roomId, type: 'end'};
-    this.sendToWebSocket(message);
+    this.service.sendToWebSocket(message);
     this.router.navigate(['/room/summary',this.roomId]);
   }
 
@@ -125,14 +129,14 @@ export class RoomComponent implements OnInit {
 
   private handleEstimationShow() {
     const showMessage = {roomId: this.roomId, type: 'show', content: {estimate: this.estimation}};
-    this.sendToWebSocket(showMessage);
+    this.service.sendToWebSocket(showMessage);
   }
 
   private handleEstimationRestart() {
     const taskMessage = {roomId: this.roomId, type: 'restart'};
     this.estimation = [];
     this.estimationMedian = 0;
-    this.sendToWebSocket(taskMessage);
+    this.service.sendToWebSocket(taskMessage);
   }
 
   private handleEstimationFinish(estimationResult) {
@@ -141,7 +145,7 @@ export class RoomComponent implements OnInit {
     this.estimationMedian = 0;
     this.service.estimateTask(this.taskToEstimate, estimationResult).subscribe(()=>{
       this.fetchTasks();
-      this.sendToWebSocket(taskMessage);
+      this.service.sendToWebSocket(taskMessage);
     });
     this.taskToEstimate = null;
   }

@@ -7,7 +7,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class TaskListComponent implements OnInit {
 
+  taskHighlated;
   @Input() tasks:any[];
+  @Input() tasksVotes: Map<number, number>;
   @Output() taskSelected:EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
@@ -16,6 +18,16 @@ export class TaskListComponent implements OnInit {
   }
 
   onTaskSelect(task){
-    this.taskSelected.emit(task)
+    this.taskSelected.emit(task);
+    this.taskHighlated = task;
+  }
+
+  getVotesForTask(task){
+    if(this.tasksVotes){
+      return this.tasksVotes.get(task.id);
+    }else{
+      return null;
+    }
+
   }
 }
