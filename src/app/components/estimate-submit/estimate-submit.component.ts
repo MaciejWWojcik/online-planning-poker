@@ -1,4 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {MatDialog} from "@angular/material";
+import {DiscussionComponent} from "../discussion/discussion.component";
 
 @Component({
   selector: 'app-estimate-submit',
@@ -7,10 +9,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class EstimateSubmitComponent implements OnInit {
 
-  @Input() estimationResult:string;
+  @Input() estimationResult;
   @Output() estimation: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -27,4 +30,7 @@ export class EstimateSubmitComponent implements OnInit {
     this.estimation.emit('show')
   }
 
+  discuss(){
+    this.estimation.emit('discuss')
+  }
 }

@@ -46,7 +46,7 @@ describe('HomeComponent', () => {
   it('should render button to create the room', async(() => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('#create').textContent).toContain('Create room');
+    expect(compiled.querySelector('#room-create-button').textContent).toContain('Create room');
   }));
 
 });
