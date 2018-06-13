@@ -14,7 +14,7 @@ export class DiscussionComponent implements OnInit {
   estimates: string[] = [];
   task: any;
   message:string;
-
+  helloMessage = false;
 
   constructor(private account: AccountService, private rooms: RoomService) {
   }
@@ -23,9 +23,10 @@ export class DiscussionComponent implements OnInit {
   }
 
   send(){
+    this.helloMessage = false;
     let message = new Message(this.message, this.account.account.username);
     this.messages.push(message);
-    this.rooms.sendToWebSocket({roomId: this.rooms.roomId, type: 'chat', content: message})
+    this.rooms.sendToWebSocket({roomId: this.rooms.roomId, type: 'chat', content: {message: message}})
   }
 
   public addMessage(message){

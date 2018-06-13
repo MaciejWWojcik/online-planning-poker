@@ -1,3 +1,3 @@
 <div class="container">
-  <app-task-item *ngFor="let task of tasks" [task]="task" (click)="onTaskSelect(task)"></app-task-item>
+  <app-task-item *ngFor="let task of tasks" [task]="task" [votes]="getVotesForTask(task)" (click)="onTaskSelect(task)" [class.highlated]="task === taskHighlated"></app-task-item>
 </div>

@@ -1,0 +1,13 @@
+<div class="row">
+  <button mat-flat-button onclick="document.getElementById('file-input').click();">Choose a file...
+  </button>
+  <input type="file" id="file-input" accept=".csv" (change)="onFileChosen($event)">
+  <label id="file-name-label" for="file-input">{{fileName}}</label>
+</div>
+<div class="row">
+  <mat-form-field>
+    <input matInput id="delimiterInput" [value]="delimiter"
+           placeholder="Enter delimiter">
+  </mat-form-field>
+</div>
+<button mat-flat-button [disabled]="!isFileChosen" (click)="parseCSV()">Import</button>

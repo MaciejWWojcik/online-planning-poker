@@ -20,7 +20,6 @@ export class SummaryComponent implements OnInit {
     this.service.getSummary().subscribe(
       (data: any) => {
         this.summary = data;
-        console.log(this.summary);
       },
       error => console.error(error)
     );
