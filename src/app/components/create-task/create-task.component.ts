@@ -9,7 +9,6 @@ import {RoomService} from '../../services/room.service';
 export class CreateTaskComponent implements OnInit {
 
   name: string;
-  description: string;
 
   constructor(private service: RoomService) {
   }
@@ -18,7 +17,6 @@ export class CreateTaskComponent implements OnInit {
   }
 
   onCreateTask(taskForm: any) {
-    console.log(this.name);
     this.service.createTask(this.name).subscribe(
       (data: any) => {
         this.service.tasks.push(data);

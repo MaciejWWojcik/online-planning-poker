@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {CreateTaskComponent} from '../../create-task/create-task.component';
 import {ImportTasksComponent} from '../../import-tasks/import-tasks.component';
+import {RoomService} from "../../../services/room.service";
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +13,7 @@ export class MenuComponent implements OnInit {
 
   @Output() emitter: EventEmitter<string> = new EventEmitter();
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, public service: RoomService) {
   }
 
   ngOnInit() {

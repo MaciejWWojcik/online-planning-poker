@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
 
   rooms: Summary[];
   teams: Team[];
+  isHistoryFetched = false;
 
   constructor(private account: AccountService, public dialog: MatDialog) { }
 
@@ -21,6 +22,7 @@ export class ProfileComponent implements OnInit {
     this.account.getSummaries().subscribe(
       (data: any) => {
         this.rooms = data;
+        setTimeout(_ => this.isHistoryFetched = true, 10)
         console.log(data)
       },
       error => console.error(error)

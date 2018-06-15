@@ -51,7 +51,7 @@ export class RoomComponent implements OnInit {
 
   private signUp() {
     setTimeout(() => {
-      let ref = this.dialog.open(CreateUserComponent);
+      let ref = this.dialog.open(CreateUserComponent, {disableClose: true});
       ref.afterClosed().subscribe(
         data => {
           if (data) {
