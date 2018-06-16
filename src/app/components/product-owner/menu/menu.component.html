@@ -1,13 +1,13 @@
-<a mat-mini-fab color="primary" href="http://online-planning-poker.herokuapp.com/#/room/participant/{{service.roomId}}" target="_blank" matTooltip="Open link to invite">
+<a class="menu-item" mat-mini-fab color="primary" href="{{baseUrl}}{{service.roomId}}" target="_blank" matTooltip="Open link to invite">
   <mat-icon>person_add</mat-icon>
 </a>
-<button mat-mini-fab color="primary" (click)="onCreateButtonClicked()" matTooltip="Add task">
+<button class="menu-item" mat-mini-fab color="primary" (click)="onCreateButtonClicked()" matTooltip="Add task">
   <mat-icon>library_add</mat-icon>
 </button>
-<button mat-mini-fab color="primary" (click)="importTasks()" matTooltip="Import tasks">
+<button class="menu-item" mat-mini-fab color="primary" (click)="importTasks()" matTooltip="Import tasks">
   <mat-icon>file_upload</mat-icon>
 </button>
-<button mat-mini-fab color="warn" (click)="endGame()" matTooltip="End game session">
+<button class="menu-item" mat-mini-fab color="warn" (click)="endGame()" matTooltip="End game session">
   <mat-icon>close</mat-icon>
 </button>
 

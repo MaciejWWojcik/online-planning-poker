@@ -12,6 +12,7 @@ import {RoomService} from "../../../services/room.service";
 export class MenuComponent implements OnInit {
 
   @Output() emitter: EventEmitter<string> = new EventEmitter();
+  baseUrl = 'http://online-planning-poker.herokuapp.com/#/room/participant/';
 
   constructor(private dialog: MatDialog, public service: RoomService) {
   }
