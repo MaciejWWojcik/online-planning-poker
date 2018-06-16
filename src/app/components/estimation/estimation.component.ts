@@ -13,7 +13,7 @@ export class EstimationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.values = ['0', '1/2', '1', '2', '3', '5', '8', '13', '21', '34', '100', '?', 'Pizza!'];
+    this.values = ['0', '1', '2', '3', '5', '8', '13', '21', '34', '100'];
   }
 
   estimate(value:string){

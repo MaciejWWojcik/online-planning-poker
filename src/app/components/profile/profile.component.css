@@ -1,0 +1,19 @@
+button{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 64px;
+  height: 64px;
+  margin: 5px 1px;
+}
+.scrollable{
+  overflow-y: scroll;
+  max-height: 90%;
+}
+mat-tab-group{
+  max-height: calc(100vh - 64px);
+}
+
+app-summary-item{
+
+}

@@ -5,23 +5,23 @@
       <mat-card-subtitle>{{summary.date}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <div class="section">
+      <div class="section" *ngIf="summary.tasks.length > 0">
         <h5>Tasks</h5>
         <mat-list *ngFor="let task of summary.tasks" dense>
           <mat-list-item>
             <p matLine>
               <span class="left">{{task.estimate}}</span>
-              <span class="right">{{task.name}}</span>
+              <span class="right">{{task.title}}</span>
             </p>
           </mat-list-item>
         </mat-list>
       </div>
       <mat-divider></mat-divider>
-      <div class="section">
+      <div class="section" *ngIf="summary.participants.length > 0">
         <h5>Participants</h5>
         <mat-list *ngFor="let participant of summary.participants" dense>
           <mat-list-item>
-            <p matLine>{{participant.name}}</p>
+            <p matLine>{{participant.userName}}</p>
           </mat-list-item>
         </mat-list>
       </div>

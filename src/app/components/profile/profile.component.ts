@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
 
   rooms: Summary[];
   teams: Team[];
+  isHistoryFetched = false;
 
   constructor(private account: AccountService, public dialog: MatDialog) { }
 

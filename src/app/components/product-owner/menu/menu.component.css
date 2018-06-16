@@ -1,5 +1,9 @@
-button{
+button, a{
   width: 64px;
   height: 64px;
   margin: 5px 1px;
+}
+
+/deep/ a > span{
+  line-height: 48px !important;
 }

@@ -1,22 +1,14 @@
 <mat-toolbar color="primary">Online planning poker</mat-toolbar>
 <mat-tab-group>
   <mat-tab label="Teams">
-    <button mat-raised-button (click)="createTeam()">Create team</button>
-    <app-team *ngFor="let team of teams" [team]="team"></app-team>
+    <button mat-mini-fab color="primary" (click)="createTeam()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <div class="scrollable">
+      <app-team *ngFor="let team of teams" [team]="team"></app-team>
+    </div>
   </mat-tab>
   <mat-tab label="History">
-
-    <mat-accordion>
-      <mat-expansion-panel *ngFor="let room of rooms" [expanded]="false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{room.roomName}}
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-summary-item [summary]="room"></app-summary-item>
-      </mat-expansion-panel>
-    </mat-accordion>
-
-
+    <app-summary-item *ngFor="let room of rooms" [summary]="room"></app-summary-item>
   </mat-tab>
 </mat-tab-group>

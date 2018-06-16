@@ -1,6 +1,7 @@
 <mat-dialog-content>
   <h1>Sign in</h1>
-  <div fxLayout="column">
+  <mat-spinner [diameter]="190" class="container" *ngIf="logging"></mat-spinner>
+  <div class="container" fxLayout="column" *ngIf="!logging" >
     <mat-form-field>
       <input matInput required type="email" placeholder="Email" [(ngModel)]="email">
     </mat-form-field>
