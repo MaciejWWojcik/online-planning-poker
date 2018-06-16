@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit {
     this.account.getSummaries().subscribe(
       (data: any) => {
         this.rooms = data;
-        setTimeout(_ => this.isHistoryFetched = true, 10)
         console.log(data)
       },
       error => console.error(error)

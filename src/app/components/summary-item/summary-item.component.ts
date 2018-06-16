@@ -14,6 +14,7 @@ export class SummaryItemComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.summary)
   }
 
 }

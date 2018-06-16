@@ -10,6 +10,7 @@ import {Account, AccountService} from "../../services/account.service";
 export class LoginComponent implements OnInit {
   email: string;
   password: string;
+  logging = false;
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>, private account: AccountService, private info: MatSnackBar) {
   }
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
+    this.logging = true;
     this.account.signIn(this.email, this.password).subscribe(
       data => {
         console.log(data);
