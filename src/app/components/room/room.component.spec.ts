@@ -18,7 +18,7 @@ describe('RoomComponent', () => {
       providers:[{ provide: APP_BASE_HREF, useValue: '/' }, AccountService, HttpClientModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

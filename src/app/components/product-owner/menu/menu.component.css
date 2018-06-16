@@ -1,9 +1,9 @@
-button, a{
+.menu-item{
   width: 64px;
   height: 64px;
   margin: 5px 1px;
 }
 
-/deep/ a > span{
+/deep/ .menu-item > span{
   line-height: 48px !important;
 }
