@@ -5,6 +5,8 @@ import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from "@angular/core";
 import {MaterialModule} from "../../material.module";
 import {RouterTestingModule} from "@angular/router/testing";
 import {APP_BASE_HREF} from "@angular/common";
+import {AccountService} from "../../services/account.service";
+import {HttpClientModule} from "@angular/common/http";
 
 describe('RoomComponent', () => {
   let component: RoomComponent;
@@ -12,8 +14,8 @@ describe('RoomComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RoomComponent ],imports:[MaterialModule, RouterTestingModule],
-      providers:[{ provide: APP_BASE_HREF, useValue: '/' }],
+      declarations: [ RoomComponent ],imports:[MaterialModule, RouterTestingModule, HttpClientModule],
+      providers:[{ provide: APP_BASE_HREF, useValue: '/' }, AccountService, HttpClientModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
     })
     .compileComponents();
