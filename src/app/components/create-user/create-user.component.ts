@@ -14,6 +14,7 @@ export class CreateUserComponent implements OnInit {
   password: string;
   team: string;
   name: string;
+  infoConfig = {duration: 3000};
 
   constructor(public dialogRef: MatDialogRef<CreateUserComponent>, private account: AccountService, private info: MatSnackBar) {
   }
@@ -22,24 +23,25 @@ export class CreateUserComponent implements OnInit {
   }
 
   signUp() {
-    let account = new Account(this.username, this.email, this.password, this.team);
+    const account = new Account(this.username, this.email, this.password, this.team);
     this.account.signUp(account).subscribe(
       data => {
+        this.info.open('Registration form submitted', '', this.infoConfig);
         this.account.account = account;
         this.dialogRef.close(this.email);
       },
-      error => this.info.open('Error, please try again later', '', {duration: 3000})
+      error => this.info.open('Error, please try again later', '', this.infoConfig)
     );
   }
 
   signIn() {
     this.account.signIn(this.email, this.password).subscribe(
       data => {
-        console.log(data);
+        this.info.open('Signed in', '', this.infoConfig);
         this.account.account = data;
         this.dialogRef.close(this.email);
       },
-      error => this.info.open('Error, please try again later', '', {duration: 3000})
+      error => this.info.open('Error, please try again later', '', this.infoConfig)
     );
   }
 

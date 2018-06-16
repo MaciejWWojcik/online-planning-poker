@@ -19,7 +19,6 @@ export class ImportTasksComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log();
     this.delimiter = this.delimiterDefault;
   }
 

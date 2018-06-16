@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RoomService} from '../../../services/room.service';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {CreateUserComponent} from '../../create-user/create-user.component';
 import {AccountService} from '../../../services/account.service';
 import {DiscussionComponent} from '../../discussion/discussion.component';
@@ -20,8 +20,10 @@ export class RoomComponent implements OnInit {
   estimationsWithId = [];
   estimationMedian: number;
   dialogRef;
+  infoConfig = {duration: 3000};
 
-  constructor(private route: ActivatedRoute, public service: RoomService, public dialog: MatDialog, private router: Router, private account: AccountService, private changeDetector: ChangeDetectorRef) {
+  constructor(private route: ActivatedRoute, public service: RoomService, public dialog: MatDialog, private router: Router
+    , private account: AccountService, private changeDetector: ChangeDetectorRef, private info: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -105,6 +107,7 @@ export class RoomComponent implements OnInit {
     this.taskToEstimate = task;
     const taskMessage = {roomId: this.roomId, type: 'task-selected', content: task};
     this.service.sendToWebSocket(taskMessage);
+    this.info.open('Selected task for estimation', '', this.infoConfig);
   }
 
   onMenuChange(type: string) {
@@ -116,8 +119,10 @@ export class RoomComponent implements OnInit {
   estimate(estimationResult) {
     if (estimationResult === 'restart') {
       this.handleEstimationRestart();
+      this.info.open('Restarted task estimation', '', this.infoConfig);
     } else if (estimationResult === 'show') {
       this.handleEstimationShow();
+      this.info.open('Displayed estimations to participants', '', this.infoConfig);
     } else if (estimationResult === 'discuss') {
       this.service.sendToWebSocket({roomId: this.roomId, type: 'discussion', content: {estimates: this.estimationsWithId}});
       this.dialogRef = this.dialog.open(DiscussionComponent, {width: '600px', height: '400px'});
@@ -149,6 +154,8 @@ export class RoomComponent implements OnInit {
       this.fetchTasks();
       this.service.sendToWebSocket(taskMessage);
     });
+    this.info.open('Estimated ' + this.taskToEstimate.estimate + ' story points for ' + this.taskToEstimate.title
+      , '', this.infoConfig);
     this.taskToEstimate = null;
   }
 
