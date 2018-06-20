@@ -1,9 +1,12 @@
 <mat-grid-list cols="15" rowHeight="fit" gutterSize="5">
+  <mat-grid-tile [colspan]="15" [rowspan]="1">
+    <mat-toolbar color="accent">Room: {{roomId}}   <span>link to invite: <a href="http://online-planning-poker.herokuapp.com/#/room/participant/{{roomId}}" target="_blank">open</a> </span> </mat-toolbar>
+  </mat-grid-tile>
   <mat-grid-tile [colspan]="15" [rowspan]="8">
 
     <div fxLayout="column" class="tasks-container">
       <div *ngIf="taskToEstimate" fxFill class="estimation-card">
-        <h3>Estimation</h3>
+        <h3 style="margin-left: 2em;">Estimation</h3>
         <div fxLayout="row" fxLayoutAlign="space-around center" class="estimation">
           <app-task-item [task]="taskToEstimate"></app-task-item>
           <app-estimation-result [values]="estimation"></app-estimation-result>
@@ -11,8 +14,8 @@
         </div>
       </div>
 
-      <h3 *ngIf="tasks.length > 0">Tasks</h3>
-      <h3 *ngIf="tasks.length == 0">Please add some tasks</h3>
+      <h3 *ngIf="tasks.length > 0" style="margin-left: 2em;">Tasks</h3>
+      <h3 *ngIf="tasks.length == 0" style="margin-left: 2em;">Please add some tasks</h3>
       <app-task-list [tasks]="tasks" [tasksVotes]="service.taskVotes" (taskSelected)="selectedToEstimate($event)"></app-task-list>
     </div>
 
