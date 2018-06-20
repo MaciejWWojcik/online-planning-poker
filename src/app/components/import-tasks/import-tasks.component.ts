@@ -27,7 +27,7 @@ export class ImportTasksComponent implements OnInit {
     this.service.sendCSVFileToParse(file, this.delimiter).subscribe((tasks: Task[]) => {
       tasks.forEach((task) => {
         this.service.tasks.push(task);
-        this.service.taskVotes.set(data.id, 0);
+        this.service.taskVotes.set(task.id, 0);
         this.service.sendToWebSocket({roomId: this.service.roomId, type: 'new-task'});
       });
     });
