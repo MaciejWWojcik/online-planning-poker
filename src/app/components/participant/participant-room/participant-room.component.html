@@ -16,8 +16,8 @@
         </div>
       </mat-card>
 
-      <h3 *ngIf="tasks" style="margin-left: 2em">Tasks</h3>
-      <div *ngIf="!tasks" class="slacking-container">
+      <h3 *ngIf="tasks.length > 0" style="margin-left: 2em">Tasks</h3>
+      <div *ngIf="tasks.length === 0" class="slacking-container">
         <h3 class="slacking-header">Your product owner is slacking</h3>
         <img src="../../../../assets/sleep.png">
         <h4 class="slacking-message">Ask him to add some tasks!</h4>
