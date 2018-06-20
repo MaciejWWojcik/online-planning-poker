@@ -1,30 +1,48 @@
-mat-grid-tile{
+mat-grid-tile {
   box-sizing: border-box;
 }
-mat-grid-list{
+
+mat-grid-list {
   width: 100vw;
   height: calc(100vh - 64px - 32px);
 }
-.estimation{
+
+.estimation {
   margin: 30px;
   display: flex;
 }
-.estimation > app-task-item{
+
+.estimation > app-task-item {
   height: 100%;
   margin: 5px;
 }
-app-estimation{
+
+app-estimation {
   margin-left: 50px;
 }
 
-/deep/ .estimation > app-task-item > mat-card{
+/deep/ .estimation > app-task-item > mat-card {
   height: 100% !important;
 }
-mat-card{
+
+mat-card {
   margin: 10px;
 }
 
-.tasks-container{
+.tasks-container {
   height: calc(100vh - 128px);
   overflow-y: scroll;
+}
+
+.slacking-container{
+  margin-top: 1em;
+}
+
+.slacking-header {
+  float: left;
+  margin-right: 1em;
+}
+
+.slacking-message {
+  text-align: center;
 }
