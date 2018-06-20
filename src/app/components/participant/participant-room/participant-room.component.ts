@@ -14,7 +14,7 @@ import {DiscussionComponent} from '../../discussion/discussion.component';
 export class ParticipantRoomComponent implements OnInit {
 
   roomId: string;
-  tasks: any[];
+  tasks = [];
   taskToEstimate: any;
   estimationResult: any[];
   canEstimate = false;
