@@ -9,6 +9,8 @@ export class EstimationComponent implements OnInit {
 
   values: string[];
   @Output() estimated: EventEmitter<string> = new EventEmitter<string>();
+  disableButtons = false;
+
   constructor() {
   }
 
@@ -16,7 +18,8 @@ export class EstimationComponent implements OnInit {
     this.values = ['0', '1', '2', '3', '5', '8', '13', '21', '34', '100'];
   }
 
-  estimate(value:string){
+  estimate(value: string) {
     this.estimated.emit(value);
+    this.disableButtons = true;
   }
 }
