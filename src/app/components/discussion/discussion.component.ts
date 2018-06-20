@@ -23,10 +23,14 @@ export class DiscussionComponent implements OnInit {
   }
 
   send(){
-    this.helloMessage = false;
-    let message = new Message(this.message, this.account.account.username);
-    this.messages.push(message);
-    this.rooms.sendToWebSocket({roomId: this.rooms.roomId, type: 'chat', content: {message: message}})
+    if(this.message && this.message.length > 0){
+      this.helloMessage = false;
+      let message = new Message(this.message, this.account.account.username);
+      this.messages.push(message);
+      this.rooms.sendToWebSocket({roomId: this.rooms.roomId, type: 'chat', content: {message: message}})
+      this.message =''
+    }
+
   }
 
   public addMessage(message){

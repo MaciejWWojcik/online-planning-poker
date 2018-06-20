@@ -17,7 +17,7 @@
 
       <div fxLayout="row" class="input-message">
         <mat-form-field>
-          <input matInput type="text" placeholder="message" [(ngModel)]="message">
+          <input matInput type="text" placeholder="message" [(ngModel)]="message" (keyup.enter)="send()">
         </mat-form-field>
         <button mat-icon-button (click)="send()"><mat-icon>send</mat-icon></button>
       </div>

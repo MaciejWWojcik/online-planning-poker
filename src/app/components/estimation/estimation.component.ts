@@ -8,6 +8,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class EstimationComponent implements OnInit {
 
   values: string[];
+  isActive = true;
+  value:string;
   @Output() estimated: EventEmitter<string> = new EventEmitter<string>();
   constructor() {
   }
@@ -17,6 +19,8 @@ export class EstimationComponent implements OnInit {
   }
 
   estimate(value:string){
+    this.isActive = false;
+    this.value = value;
     this.estimated.emit(value);
   }
 }
