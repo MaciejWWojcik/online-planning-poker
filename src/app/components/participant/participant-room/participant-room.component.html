@@ -4,9 +4,9 @@
   </mat-grid-tile>
   <mat-grid-tile [colspan]="15" [rowspan]="8">
 
-    <div fxLayout="column">
+    <div fxLayout="column" class="tasks-container">
 
-      <mat-card *ngIf="taskToEstimate" fxFill>
+      <mat-card *ngIf="taskToEstimate">
         <h3 *ngIf="!estimationResult">Estimation</h3>
         <h3 *ngIf="estimationResult">Estimation Finished</h3>
         <div  fxLayout="row" fxLayoutAlign="space-around center"  class="estimation">
@@ -16,7 +16,7 @@
         </div>
       </mat-card>
 
-      <h3>Tasks</h3>
+      <h3 style="margin-left: 2em">Tasks</h3>
       <app-task-list [tasks]="tasks" (taskSelected)="voteForTask($event)"></app-task-list>
     </div>
 
