@@ -8,3 +8,7 @@ button{
   display: flex;
   flex-wrap: wrap;
 }
+
+h4{
+  min-width: 300px;
+}

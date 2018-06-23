@@ -56,16 +56,25 @@ export class ParticipantRoomComponent implements OnInit {
         const message = JSON.parse(msg.data);
         const type = message.type;
         if (type == 'task-selected') {
+          if(this.dialogRef){
+            this.dialog.closeAll();
+          }
           this.taskToEstimate =message.content;
           this.estimationResult = null;
           this.canEstimate = true;
           this.info.open('Estimation started', '', this.infoConfig)
         } else if (type == 'restart') {
+          if(this.dialogRef){
+            this.dialog.closeAll();
+          }
           this.estimationResult = null;
           this.canEstimate = true;
           this.info.open('Product Onwer restarted task estimation', '', this.infoConfig)
         } else if (type == 'esimation-finish') {
-          this.canEstimate = true;
+          if(this.dialogRef){
+            this.dialog.closeAll();
+          }
+          this.canEstimate = false;
           this.fetchTasks();
           this.info.open('Task estimation finished', '', this.infoConfig)
         } else if (type == 'new-task') {
@@ -73,6 +82,9 @@ export class ParticipantRoomComponent implements OnInit {
         } else if (type == 'show') {
           this.estimationResult = message.content.estimate;
           this.info.open('Product Owner send you estimates', '', this.infoConfig)
+          if(this.dialogRef){
+            this.dialog.closeAll();
+          }
         }else if (type == 'end') {
           this.router.navigate(['/room/summary',this.roomId]);
           this.info.open('End of planning game', '', this.infoConfig)
