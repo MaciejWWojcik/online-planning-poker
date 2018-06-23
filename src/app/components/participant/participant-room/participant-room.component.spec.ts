@@ -1,17 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ParticipantRoomComponent } from './participant-room.component';
-import {RoomService} from "../../../services/room.service";
-import {FormsModule} from "@angular/forms";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ActivatedRoute, Router, RouterModule} from "@angular/router";
-import {MaterialModule} from "../../../material.module";
-import {HttpClientModule} from "@angular/common/http";
-import {BrowserModule} from "@angular/platform-browser";
-import {TaskItemComponent} from "../../tasks/task-item/task-item.component";
-import {EstimationComponent} from "../../estimation/estimation.component";
-import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from "@angular/core";
-import {AccountService} from "../../../services/account.service";
+import {ParticipantRoomComponent} from './participant-room.component';
+import {RoomService} from '../../../services/room.service';
+import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ActivatedRoute, Router, RouterModule} from '@angular/router';
+import {MaterialModule} from '../../../material.module';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {TaskItemComponent} from '../../tasks/task-item/task-item.component';
+import {EstimationComponent} from '../../estimation/estimation.component';
+import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
+import {AccountService} from '../../../services/account.service';
 
 describe('ParticipantRoomComponent', () => {
   let component: ParticipantRoomComponent;
@@ -19,19 +19,19 @@ describe('ParticipantRoomComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ParticipantRoomComponent, TaskItemComponent, EstimationComponent],
-      imports: [MaterialModule, FormsModule, HttpClientModule, RouterModule, BrowserModule,BrowserAnimationsModule],
-      providers: [RoomService,AccountService ,HttpClientModule,
+      declarations: [ParticipantRoomComponent, TaskItemComponent, EstimationComponent],
+      imports: [MaterialModule, FormsModule, HttpClientModule, RouterModule, BrowserModule, BrowserAnimationsModule],
+      providers: [RoomService, AccountService, HttpClientModule,
         {
-          provide: ActivatedRoute, useValue: {snapshot:{params:{id:'test'}}}
-        },{
+          provide: ActivatedRoute, useValue: {snapshot: {params: {id: 'test'}}}
+        }, {
           provide: Router, useClass: class {
-            navigate = jasmine.createSpy("navigate");
+            navigate = jasmine.createSpy('navigate');
           }
         }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

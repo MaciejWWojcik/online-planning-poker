@@ -1,6 +1,7 @@
 <div class="container">
+
   <div *ngIf="isActive" >
-    <button mat-raised-button color="primary" *ngFor="let value of values" (click)="estimate(value)">
+    <button mat-raised-button color="primary" *ngFor="let value of values" (click)="estimate(value)" [disabled]="disableButtons">
       {{value}}
     </button>
   </div>
