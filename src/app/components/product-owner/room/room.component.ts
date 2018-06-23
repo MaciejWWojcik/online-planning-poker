@@ -171,9 +171,9 @@ export class RoomComponent implements OnInit {
     const half = Math.floor(intValues.length / 2);
 
     if ((intValues.length % 2) === 0) {
-      return (intValues[half - 1] + intValues[half]) / 2;
+      return ((intValues[half - 1] + intValues[half]) / 2)%1;
     } else {
-      return intValues[half];
+      return (intValues[half])%1;
     }
   }
 }
