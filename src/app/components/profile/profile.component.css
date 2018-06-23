@@ -11,7 +11,12 @@ button{
   max-height: 90%;
 }
 mat-tab-group{
+  min-height: calc(100vh - 64px);
   max-height: calc(100vh - 64px);
+}
+
+/deep/ .mat-tab-body-content{
+  min-height: calc(100vh - 128px);
 }
 
 app-summary-item{
