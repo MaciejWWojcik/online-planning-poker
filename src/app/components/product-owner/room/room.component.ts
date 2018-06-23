@@ -173,10 +173,12 @@ export class RoomComponent implements OnInit {
       const value = intValues[i];
       if (!nonRepeatedValues.includes(value)) {
         nonRepeatedValues[i] = value;
-        if (frequencies[i]) {
-          frequencies[i] += 1;
-        } else {
-          frequencies[i] = 1;
+        frequencies[i] = 1;
+      } else {
+        for (let j = 0; j < nonRepeatedValues.length; j++) {
+          if (intValues[i] === nonRepeatedValues[j]) {
+            frequencies[j] += 1;
+          }
         }
       }
     }
