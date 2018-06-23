@@ -32,6 +32,7 @@ mat-card {
 .tasks-container {
   height: calc(100vh - 128px);
   overflow-y: scroll;
+  width: 100%;
 }
 
 .slacking-container{
