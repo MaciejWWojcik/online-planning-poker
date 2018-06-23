@@ -103,6 +103,7 @@ export class RoomComponent implements OnInit {
 
   selectedToEstimate(task) {
     this.estimation = [];
+    this.estimationsWithId = [];
     this.estimationMedian = 0;
     this.taskToEstimate = task;
     const taskMessage = {roomId: this.roomId, type: 'task-selected', content: task};
@@ -165,14 +166,30 @@ export class RoomComponent implements OnInit {
       return a - b;
     });
 
-    if (intValues.length === 0) return 0;
+    const nonRepeatedValues = [];
+    const frequencies = [];
 
-    const half = Math.floor(intValues.length / 2);
-
-    if ((intValues.length % 2) === 0) {
-      return (intValues[half - 1] + intValues[half]) / 2;
-    } else {
-      return intValues[half];
+    for (let i = 0; i < intValues.length; i++) {
+      const value = intValues[i];
+      if (!nonRepeatedValues.includes(value)) {
+        nonRepeatedValues[i] = value;
+        frequencies[i] = 1;
+      } else {
+        for (let j = 0; j < nonRepeatedValues.length; j++) {
+          if (intValues[i] === nonRepeatedValues[j]) {
+            frequencies[j] += 1;
+          }
+        }
+      }
     }
+
+    let mostFrequentValueIndex = 0;
+    for (let i = 0; i < frequencies.length; i++) {
+      if (frequencies[i] > frequencies[mostFrequentValueIndex]) {
+        mostFrequentValueIndex = i;
+      }
+    }
+
+    return nonRepeatedValues[mostFrequentValueIndex];
   }
 }
