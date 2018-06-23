@@ -154,7 +154,7 @@ export class RoomComponent implements OnInit {
       this.fetchTasks();
       this.service.sendToWebSocket(taskMessage);
     });
-    this.info.open('Estimated ' + this.taskToEstimate.estimate + ' story points for ' + this.taskToEstimate.title
+    this.info.open('Estimated ' + estimationResult + ' story points for ' + this.taskToEstimate.title
       , '', this.infoConfig);
     this.taskToEstimate = null;
   }

@@ -32,6 +32,8 @@ span{
 }
 .tasks-container{
   width: 100%;
+  height: calc(100vh - 128px);
+  overflow-y: scroll;
 }
 
 app-task-item{

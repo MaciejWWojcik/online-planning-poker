@@ -8,24 +8,25 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class TaskListComponent implements OnInit {
 
   taskHighlated;
-  @Input() tasks:any[];
+  @Input() tasks: any[];
   @Input() tasksVotes: Map<number, number>;
-  @Output() taskSelected:EventEmitter<any> = new EventEmitter<any>();
+  @Output() taskSelected: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  onTaskSelect(task){
+  onTaskSelect(task) {
     this.taskSelected.emit(task);
     this.taskHighlated = task;
   }
 
-  getVotesForTask(task){
-    if(this.tasksVotes){
+  getVotesForTask(task) {
+    if (this.tasksVotes) {
       return this.tasksVotes.get(task.id);
-    }else{
+    } else {
       return null;
     }
 
