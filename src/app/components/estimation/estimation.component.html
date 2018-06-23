@@ -1,5 +1,10 @@
 <div class="container">
-  <button mat-raised-button color="primary" *ngFor="let value of values" (click)="estimate(value)">
-    {{value}}
-  </button>
+
+  <div *ngIf="isActive" >
+    <button mat-raised-button color="primary" *ngFor="let value of values" (click)="estimate(value)" [disabled]="disableButtons">
+      {{value}}
+    </button>
+  </div>
+
+  <h4 *ngIf="!isActive">Task Estimated: {{value}}</h4>
 </div>

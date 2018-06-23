@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {CreateTaskComponent} from '../../create-task/create-task.component';
+import {ImportTasksComponent} from '../../import-tasks/import-tasks.component';
+import {RoomService} from "../../../services/room.service";
 
 @Component({
   selector: 'app-menu',
@@ -10,8 +12,9 @@ import {CreateTaskComponent} from '../../create-task/create-task.component';
 export class MenuComponent implements OnInit {
 
   @Output() emitter: EventEmitter<string> = new EventEmitter();
+  baseUrl = 'http://online-planning-poker.herokuapp.com/#/room/participant/';
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, public service: RoomService) {
   }
 
   ngOnInit() {
@@ -21,7 +24,11 @@ export class MenuComponent implements OnInit {
     this.dialog.open(CreateTaskComponent);
   }
 
-  endGame(){
+  endGame() {
     this.emitter.emit('end');
+  }
+
+  importTasks() {
+    this.dialog.open(ImportTasksComponent);
   }
 }

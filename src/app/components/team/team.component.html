@@ -1,0 +1,24 @@
+<div class="container">
+  <mat-card *ngIf="team">
+    <mat-card-header>
+      <mat-card-title>{{team.name}}</mat-card-title>
+      <mat-card-subtitle>{{team.creator}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="section">
+        <h5>Members</h5>
+        <mat-list dense>
+          <mat-list-item *ngFor="let member of team.members" >
+            <p matLine>{{member}}</p>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <mat-divider></mat-divider>
+      <h5>Add member</h5>
+      <mat-form-field>
+        <input matInput type="email" placeholder="email" [(ngModel)]="email">
+      </mat-form-field>
+      <button mat-mini-fab (click)="add()"><mat-icon>add</mat-icon></button>
+    </mat-card-content>
+  </mat-card>
+</div>

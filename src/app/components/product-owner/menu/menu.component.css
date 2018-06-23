@@ -1,5 +1,9 @@
-button{
+.menu-item{
   width: 64px;
   height: 64px;
   margin: 5px 1px;
+}
+
+/deep/ .menu-item > span{
+  line-height: 48px !important;
 }

@@ -1,2 +1,5 @@
-<mat-toolbar color="primary">Online planning poker</mat-toolbar>
+<mat-toolbar color="primary">
+  <span>Online planning poker</span>
+  <button class="login" *ngIf="account.account" mat-button (click)="profile()">Logged as: {{account.account.username}}</button>
+</mat-toolbar>
 <router-outlet></router-outlet>

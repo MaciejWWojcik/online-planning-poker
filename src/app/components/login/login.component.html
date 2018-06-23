@@ -1,0 +1,13 @@
+<mat-dialog-content>
+  <h1>Sign in</h1>
+  <mat-spinner [diameter]="190" class="container" *ngIf="logging"></mat-spinner>
+  <div class="container" fxLayout="column" *ngIf="!logging" >
+    <mat-form-field>
+      <input matInput required type="email" placeholder="Email" [(ngModel)]="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput required type="password" placeholder="Password" [(ngModel)]="password">
+    </mat-form-field>
+    <button mat-raised-button (click)="signIn()">Sign in</button>
+  </div>
+</mat-dialog-content>

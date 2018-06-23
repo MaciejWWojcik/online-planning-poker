@@ -1,2 +1,13 @@
-<button mat-mini-fab color="primary" (click)="onCreateButtonClicked()"><mat-icon>library_add</mat-icon></button>
-<button mat-mini-fab  color="warn" (click)="endGame()"><mat-icon>close</mat-icon></button>
+<a class="menu-item" mat-mini-fab color="primary" href="{{baseUrl}}{{service.roomId}}" target="_blank" matTooltip="Open link to invite">
+  <mat-icon>person_add</mat-icon>
+</a>
+<button class="menu-item" mat-mini-fab color="primary" (click)="onCreateButtonClicked()" matTooltip="Add task">
+  <mat-icon>library_add</mat-icon>
+</button>
+<button class="menu-item" mat-mini-fab color="primary" (click)="importTasks()" matTooltip="Import tasks">
+  <mat-icon>file_upload</mat-icon>
+</button>
+<button class="menu-item" mat-mini-fab color="warn" (click)="endGame()" matTooltip="End game session">
+  <mat-icon>close</mat-icon>
+</button>
+

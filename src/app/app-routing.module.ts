@@ -6,6 +6,7 @@ import {CreateTaskComponent} from './components/create-task/create-task.componen
 import {RoomComponent as Host} from './components/product-owner/room/room.component';
 import {ParticipantRoomComponent} from './components/participant/participant-room/participant-room.component';
 import {SummaryComponent} from "./components/summary/summary.component";
+import {ProfileComponent} from "./components/profile/profile.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent,pathMatch: 'full'},
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
     ]
   },
   {path: 'create-task', component: CreateTaskComponent},
+  {path: 'profile', component: ProfileComponent},
 
 ];
 

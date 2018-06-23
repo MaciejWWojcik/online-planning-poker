@@ -1,0 +1,14 @@
+.right{
+  margin-left: 20px;
+}
+.left{
+  width: 20px;
+  float: left;
+}
+.container{
+  max-width: 30%;
+  margin: 5% auto;
+}
+h5{
+  margin: 3px 0;
+}

@@ -1,0 +1,27 @@
+<div fxLayout="row" class="container">
+  <div fxLayout="column" fxFlex="50">
+    <app-task-item [task]="task"></app-task-item>
+    <app-estimation-result [values]="estimates"></app-estimation-result>
+  </div>
+  <div fxLayout="column" fxFlex="50">
+    <div fxLayout="column" class="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+      <mat-card class="message" *ngFor="let message of messages">
+        <span class="sender">{{message.sender}}</span>
+        <span class="content">{{message.content}}</span>
+      </mat-card>
+
+      <mat-card class="message" *ngIf="helloMessage">
+        <span class="sender">You selected extreme number of points</span>
+        <span class="content">Please write why you chose this number of points </span>
+      </mat-card>
+
+      <div fxLayout="row" class="input-message">
+        <mat-form-field>
+          <input matInput type="text" placeholder="message" [(ngModel)]="message" (keyup.enter)="send()">
+        </mat-form-field>
+        <button mat-icon-button (click)="send()"><mat-icon>send</mat-icon></button>
+      </div>
+
+    </div>
+  </div>
+</div>

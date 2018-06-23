@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 
 
 import {AppComponent} from './app.component';
@@ -20,9 +20,18 @@ import {EstimationComponent} from './components/estimation/estimation.component'
 import {EstimationResultComponent} from './components/estimation-result/estimation-result.component';
 import {CreateTaskComponent} from './components/create-task/create-task.component';
 import {MenuComponent} from './components/product-owner/menu/menu.component';
-import {SummaryComponent} from "./components/summary/summary.component";
-import {EstimateSubmitComponent} from "./components/estimate-submit/estimate-submit.component";
-import {CreateUserComponent} from "./components/create-user/create-user.component";
+import {SummaryComponent} from './components/summary/summary.component';
+import {EstimateSubmitComponent} from './components/estimate-submit/estimate-submit.component';
+import {CreateUserComponent} from './components/create-user/create-user.component';
+import {ImportTasksComponent} from './components/import-tasks/import-tasks.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {LoginComponent} from './components/login/login.component';
+import {SummaryItemComponent} from './components/summary-item/summary-item.component';
+import {TeamComponent} from './components/team/team.component';
+import {TeamCreateComponent} from './components/team-create/team-create.component';
+import {DiscussionComponent} from './components/discussion/discussion.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {AccountService} from './services/account.service';
 
 
 @NgModule({
@@ -42,22 +51,32 @@ import {CreateUserComponent} from "./components/create-user/create-user.componen
     MenuComponent,
     EstimateSubmitComponent,
     CreateUserComponent,
-    SummaryComponent
+    SummaryComponent,
+    ImportTasksComponent,
+    SummaryComponent,
+    ProfileComponent,
+    LoginComponent,
+    SummaryItemComponent,
+    TeamComponent,
+    TeamCreateComponent,
+    DiscussionComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FlexLayoutModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [RoomService],
+  providers: [RoomService, AccountService],
   schemas: [
     NO_ERRORS_SCHEMA
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CreateRoomComponent, CreateUserComponent]
+  entryComponents: [CreateRoomComponent, CreateUserComponent, LoginComponent, TeamCreateComponent, DiscussionComponent
+    , ImportTasksComponent]
 })
 export class AppModule {
 }

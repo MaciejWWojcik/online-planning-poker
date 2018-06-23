@@ -1,6 +1,7 @@
 mat-card{
   max-width: 200px;
   padding: 24px 2px;
+  background-color: #ffd740;
 }
 p{
   font-size: .8em;
@@ -15,6 +16,6 @@ mat-card-subtitle > mat-icon{
   font-size: 1.5em !important;
   width: 10px;
 }
-mat-card{
-  background-color: #ffd740;
+mat-card-content{
+  padding: 10px;
 }

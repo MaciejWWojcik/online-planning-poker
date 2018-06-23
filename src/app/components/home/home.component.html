@@ -1,7 +1,9 @@
 <div class="background"></div>
+<button class="login" *ngIf="!account.account" mat-button (click)="signIn()">Sign in</button>
+<button class="login" *ngIf="account.account" mat-button (click)="profile()">{{account.account.username}}</button>
 <div class="container" fxLayout="column" fxLayoutAlign="space-around center" >
   <h1>Online Planning Poker</h1>
-  <button mat-raised-button color="accent" (click)="createRoom()">Create room</button>
+  <button id="room-create-button" mat-raised-button color="accent" (click)="createRoom()">Create room</button>
 </div>
 
 

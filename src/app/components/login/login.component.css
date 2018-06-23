@@ -1,0 +1,11 @@
+mat-accordion{
+  margin: 10px;
+}
+.container, mat-spinner{
+  width: 200px;
+  height: 200px;
+}
+
+mat-dialog-content{
+  overflow: hidden !important;
+}

@@ -4,20 +4,29 @@
   </mat-grid-tile>
   <mat-grid-tile [colspan]="15" [rowspan]="8">
 
-    <div fxLayout="column">
+    <div fxLayout="column" class="tasks-container">
 
-      <mat-card *ngIf="taskToEstimate" fxFill>
+      <mat-card *ngIf="taskToEstimate">
         <h3 *ngIf="!estimationResult">Estimation</h3>
         <h3 *ngIf="estimationResult">Estimation Finished</h3>
-        <div  fxLayout="row" fxLayoutAlign="space-around center"  class="estimation">
-          <app-task-item [task]="taskToEstimate" ></app-task-item>
+        <div fxLayout="row" fxLayoutAlign="space-around center" class="estimation">
+          <app-task-item [task]="taskToEstimate"></app-task-item>
           <app-estimation *ngIf="!estimationResult" (estimated)="estimateTask($event)"></app-estimation>
           <app-estimation-result *ngIf="estimationResult" [values]="estimationResult"></app-estimation-result>
         </div>
       </mat-card>
 
-      <h3>Tasks</h3>
-      <app-task-list [tasks]="tasks"></app-task-list>
+      <h3 *ngIf="tasks.length > 0" style="margin-left: 2em">Tasks</h3>
+      <div *ngIf="tasks.length == 0" class="slacking-container">
+        <div class="center">
+          <h3 class="slacking-header">Your product owner is slacking</h3>
+          <img src="../../../../assets/sleep.png">
+        </div>
+
+        <h4 class="slacking-message">Ask him to add some tasks!</h4>
+      </div>
+
+      <app-task-list [tasks]="tasks" (taskSelected)="voteForTask($event)"></app-task-list>
     </div>
 
   </mat-grid-tile>
