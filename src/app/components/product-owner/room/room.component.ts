@@ -103,6 +103,7 @@ export class RoomComponent implements OnInit {
 
   selectedToEstimate(task) {
     this.estimation = [];
+    this.estimationsWithId = [];
     this.estimationMedian = 0;
     this.taskToEstimate = task;
     const taskMessage = {roomId: this.roomId, type: 'task-selected', content: task};

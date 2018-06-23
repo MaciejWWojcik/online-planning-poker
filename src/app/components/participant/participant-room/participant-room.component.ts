@@ -62,7 +62,8 @@ export class ParticipantRoomComponent implements OnInit {
             this.dialog.closeAll();
           }
           this.taskToEstimate =message.content;
-          this.estimationResult = null;
+          this.estimationResult = [{}];
+          setTimeout(_ => this.estimationResult = null);
           this.canEstimate = true;
           this.info.open('Estimation started', '', this.infoConfig);
         } else if (type == 'restart') {
@@ -91,6 +92,7 @@ export class ParticipantRoomComponent implements OnInit {
           this.router.navigate(['/room/summary',this.roomId]);
           this.info.open('End of planning game', '', this.infoConfig)
         }else if (type == 'discussion') {
+          this.estimationResult = null;
           this.dialogRef = this.dialog.open(DiscussionComponent, {width:'600px', height:'400px'});
           this.dialogRef.componentInstance.estimates = [];
           message.content.estimates.forEach(estimate => this.dialogRef.componentInstance.estimates.push(estimate.estimate));
